@@ -2,7 +2,7 @@
 
 > **Erstellt von Sertac · Made by [NetBoosting](https://netboosting.de)** · Frei nutzbar unter MIT-Lizenz · 🇬🇧 [English guide](README.md)
 
-![Aktive Installationen diese Woche](https://heartbeat-production-40b4.up.railway.app/badge.svg)
+![Aktive Installationen diese Woche](grafik/installationen.svg)
 
 GitHub zeigt dir für jedes Repo, wie oft es aufgerufen und geklont wurde. Aber nur für die
 letzten 14 Tage, danach ist es weg. Repo-Statistik ist eine GitHub Action, die diese Zahlen
@@ -205,8 +205,9 @@ in fremder Software wünschen. Er enthält genau vier Dinge:
 
 Keine Repo-Namen, keine Zugriffszahlen, keine Personen. Der Empfänger läuft auf Railway,
 speichert keine IP-Adressen, auch nicht im Zugriffslog, und sein Code liegt offen in
-[`heartbeat/`](heartbeat/). Die Summe siehst du oben im Abzeichen und unter
-<https://heartbeat-production-40b4.up.railway.app/zahlen>.
+[`heartbeat/`](heartbeat/). Die Summe siehst du oben im Abzeichen, das die Montags-Action als
+Datei ins Repo legt, und jederzeit unter <https://heartbeat-production-40b4.up.railway.app/zahlen>. Der
+Empfänger schläft, wenn nichts ankommt, die erste Anfrage weckt ihn und dauert ein paar Sekunden.
 
 Abschalten: im Repo unter Settings → Secrets and variables → Actions → Variables die Variable
 `DO_NOT_TRACK` auf `1` setzen. Lokal reicht dieselbe Umgebungsvariable. Der Lauf meldet dann

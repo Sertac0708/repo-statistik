@@ -2,7 +2,7 @@
 
 > **Created by Sertac · Made by [NetBoosting](https://netboosting.de)** · Free to use under the MIT license · 🇩🇪 [Deutsche Anleitung](README.de.md)
 
-![Active installs this week](https://heartbeat-production-40b4.up.railway.app/badge.svg?lang=en)
+![Active installs this week](grafik/installationen-en.svg)
 
 GitHub shows you how often each repo was viewed and cloned. But only for the last 14 days,
 then it is gone. Repo-Statistik ("repo statistics") is a GitHub Action that fetches those
@@ -200,7 +200,9 @@ be built. It contains exactly four things:
 
 No repo names, no traffic numbers, no people. The receiver runs on Railway, stores no IP
 addresses, not even in its access log, and its code is public in [`heartbeat/`](heartbeat/).
-The total is the badge at the top and <https://heartbeat-production-40b4.up.railway.app/zahlen>.
+The total is the badge at the top, which the Monday Action stores as a file in the repo, and
+at any time <https://heartbeat-production-40b4.up.railway.app/zahlen>. The receiver sleeps when idle; the
+first request wakes it and takes a few seconds.
 
 To turn it off: in your repo go to Settings → Secrets and variables → Actions → Variables
 and set `DO_NOT_TRACK` to `1`. Locally, the same environment variable works. The run then

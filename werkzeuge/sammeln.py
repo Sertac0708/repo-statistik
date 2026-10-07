@@ -374,7 +374,8 @@ def heartbeat(anzahl_repos: int, ok: bool) -> None:
         headers={"Content-Type": "application/json", "User-Agent": f"repo-statistik/{VERSION}"},
     )
     try:
-        with urllib.request.urlopen(anfrage, timeout=5):
+        # Der Empfänger schläft bei Inaktivität und braucht beim Aufwachen ein paar Sekunden.
+        with urllib.request.urlopen(anfrage, timeout=25):
             pass
         print("Heartbeat gesendet (anonym: Install-ID, Version, Anzahl Repos, ok · abschalten: DO_NOT_TRACK=1)")
     except Exception as e:  # noqa: BLE001

@@ -27,6 +27,11 @@ jobs:
           DO_NOT_TRACK: ${{ vars.DO_NOT_TRACK }}
           STATISTIK_HEARTBEAT: ${{ vars.STATISTIK_HEARTBEAT }}
         run: python3 werkzeuge/sammeln.py
+      - name: Abzeichen der aktiven Installationen holen (nur im Ursprungs-Repo)
+        if: github.repository == 'Sertac0708/repo-statistik'
+        run: |
+          curl -fsS --max-time 40 "https://heartbeat-production-40b4.up.railway.app/badge.svg" -o grafik/installationen.svg || echo "Abzeichen (de) nicht geholt"
+          curl -fsS --max-time 40 "https://heartbeat-production-40b4.up.railway.app/badge.svg?lang=en" -o grafik/installationen-en.svg || echo "Abzeichen (en) nicht geholt"
       - name: Änderungen einchecken
         run: |
           git config user.name "statistik-bot"
