@@ -17,7 +17,7 @@ This repo is the guide and the result at the same time. The block below is rewri
 tool every Monday with the numbers of our public repos.
 
 <!-- statistik:start -->
-As of 2026-10-07 11:30 UTC. This block is written by the tool; manual edits will be overwritten.
+As of 2026-10-07 11:33 UTC. This block is written by the tool; manual edits will be overwritten.
 
 ### Sertac0708/feature-scout
 
@@ -71,6 +71,21 @@ Referrers (unique visitors, 14 days): github.com (1)
 | 2026-09-21 | 76 | 10 | 5 |
 
 Referrers (unique visitors, 14 days): github.com (1)
+
+### Sertac0708/repo-statistik
+
+- Stars 0 · Forks 0 · Watchers 0 · open issues 0
+- Last 14 days per GitHub: 0 clones from 0 machines, 0 views from 0 visitors
+- Since recording began (2026-10-07): 0 clones, 0 views
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
+  <img alt="Clones and views per week for repo-statistik" src="grafik/repo-statistik.svg" width="720">
+</picture>
+
+| Week of | Clones | Views | Days with data |
+|---|---:|---:|---:|
+| 2026-10-05 | 0 | 0 | 3 |
 <!-- statistik:end -->
 
 ## How it works

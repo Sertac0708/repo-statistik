@@ -1,14 +1,8 @@
 {
-  "repo": "Sertac0708/siteground-deploy",
-  "aufzeichnung_seit": "2026-10-02",
+  "repo": "Sertac0708/repo-statistik",
+  "aufzeichnung_seit": "2026-10-07",
   "aktualisiert": "2026-10-07 11:33 UTC",
   "tage": {
-    "2026-09-23": {
-      "aufrufe": 0,
-      "aufrufe_eindeutig": 0,
-      "klone": 0,
-      "klone_eindeutig": 0
-    },
     "2026-09-24": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
@@ -60,20 +54,20 @@
     "2026-10-02": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
-      "klone": 39,
-      "klone_eindeutig": 27
+      "klone": 0,
+      "klone_eindeutig": 0
     },
     "2026-10-03": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
-      "klone": 6,
-      "klone_eindeutig": 6
+      "klone": 0,
+      "klone_eindeutig": 0
     },
     "2026-10-04": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
-      "klone": 4,
-      "klone_eindeutig": 4
+      "klone": 0,
+      "klone_eindeutig": 0
     },
     "2026-10-05": {
       "aufrufe": 0,
@@ -82,6 +76,12 @@
       "klone_eindeutig": 0
     },
     "2026-10-06": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-10-07": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
       "klone": 0,
@@ -97,8 +97,8 @@
       "issues_offen": 0,
       "aufrufe_14t": 0,
       "aufrufe_eindeutig_14t": 0,
-      "klone_14t": 49,
-      "klone_eindeutig_14t": 37
+      "klone_14t": 0,
+      "klone_eindeutig_14t": 0
     }
   ],
   "verweise": {
@@ -107,5 +107,5 @@
   "pfade": {
     "2026-10-07": []
   },
-  "erstellt": "2026-10-02"
+  "erstellt": "2026-10-07"
 }

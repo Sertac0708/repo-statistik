@@ -17,7 +17,7 @@ Dieses Repo ist Anleitung und Ergebnis zugleich. Der Block unten wird jeden Mont
 Werkzeug neu geschrieben, mit den Zahlen unserer öffentlichen Repos.
 
 <!-- statistik:start -->
-Stand: 2026-10-07 11:30 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
+Stand: 2026-10-07 11:33 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
 
 ### Sertac0708/feature-scout
 
@@ -71,6 +71,21 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (1)
 | 2026-09-21 | 76 | 10 | 5 |
 
 Verweise (eindeutige Besucher, 14 Tage): github.com (1)
+
+### Sertac0708/repo-statistik
+
+- Sterne 0 · Forks 0 · Beobachter 0 · offene Issues 0
+- Letzte 14 Tage laut GitHub: 0 Klone von 0 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-10-07): 0 Klone, 0 Aufrufe
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
+  <img alt="Klone und Aufrufe je Woche für repo-statistik" src="grafik/repo-statistik.svg" width="720">
+</picture>
+
+| Woche ab | Klone | Aufrufe | Tage mit Daten |
+|---|---:|---:|---:|
+| 2026-10-05 | 0 | 0 | 3 |
 <!-- statistik:end -->
 
 ## So funktioniert es
