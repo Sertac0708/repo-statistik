@@ -218,6 +218,15 @@ reports "Heartbeat: aus" and sends nothing. Everything else works as before. Mor
   counts against your monthly quota.
 - If the token expires, the run turns red and GitHub emails you. Set a new token.
 
+## Review as a service
+
+NetBoosting GmbH reviews AI tools before they go into use: plugins, skills, MCP servers, this
+one included if you would rather not read it yourself. Seven fixed questions, checked by hand,
+written result with a recommendation. To do it yourself, there is the free
+[Repo-Prüfer](https://github.com/Sertac0708/github-repo-pruefer). For a review by us: email
+<hello@netboosting.de> with the repo link and what you want to use it for, and you get a
+fixed-price quote.
+
 ## License and contact
 
 MIT license. Created by Sertac, published by [NetBoosting](https://netboosting.de).

@@ -223,6 +223,15 @@ Abschalten: im Repo unter Settings → Secrets and variables → Actions → Var
   bei privaten zählt es aufs monatliche Kontingent.
 - Läuft der Token ab, wird der Lauf rot und GitHub mailt dich an. Dann neuen Token setzen.
 
+## Prüfung als Dienstleistung
+
+Die NetBoosting GmbH prüft KI-Werkzeuge vor dem Einsatz: Plugins, Skills, MCP-Server, auch
+dieses hier, wenn du es nicht selbst lesen willst. Sieben feste Fragen, von Hand nachgeprüft,
+schriftliches Ergebnis mit Empfehlung. Zum Selbermachen gibt es den kostenlosen
+[Repo-Prüfer](https://github.com/Sertac0708/github-repo-pruefer). Für die Prüfung durch uns:
+Mail an <hello@netboosting.de> mit Repo-Link und Einsatzzweck, du bekommst ein Angebot zum
+Festpreis.
+
 ## Lizenz und Kontakt
 
 MIT-Lizenz. Erstellt von Sertac, herausgegeben von [NetBoosting](https://netboosting.de).
