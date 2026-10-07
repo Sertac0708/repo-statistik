@@ -1,0 +1,37 @@
+# Wöchentliche Sammlung der GitHub-Zugriffszahlen (Aufrufe, Klone, Verweise, Sterne) für die Repos
+# in repos.txt. GitHub behält Traffic nur 14 Tage; werkzeuge/sammeln.py hebt die Tageswerte in
+# daten/<repo>.json auf und schreibt README.md neu. Läuft auf GitHub, nicht auf dem Mac.
+# Von Hand starten: Actions -> „Statistik sammeln“ -> Run workflow.
+# Braucht das Secret STATISTIK_TOKEN: fein abgestufter Token, nur lesend (Administration + Metadata),
+# nur für die gelisteten Repos. Fehlt er, schlägt der Lauf mit klarer Meldung fehl (GitHub mailt).
+name: Statistik sammeln
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # montags 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sammeln:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - name: Zahlen holen
+        env:
+          STATISTIK_TOKEN: ${{ secrets.STATISTIK_TOKEN }}
+        run: python3 werkzeuge/sammeln.py
+      - name: Änderungen einchecken
+        run: |
+          git config user.name "statistik-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daten README.md
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+            exit 0
+          fi
+          git commit -m "Statistik $(date -u +%Y-%m-%d)"
+          git push

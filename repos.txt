@@ -1,0 +1,5 @@
+# Ein Repo je Zeile (Eigentümer/Name). Zeilen mit # werden übersprungen.
+# Der Token (STATISTIK_TOKEN) muss für jedes Repo hier "Administration: read" haben.
+Sertac0708/feature-scout
+Sertac0708/siteground-deploy
+Sertac0708/github-repo-pruefer

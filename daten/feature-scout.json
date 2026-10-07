@@ -1,0 +1,133 @@
+{
+  "repo": "Sertac0708/feature-scout",
+  "aufzeichnung_seit": "2026-09-28",
+  "aktualisiert": "2026-10-07 10:43 UTC",
+  "tage": {
+    "2026-09-23": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-09-24": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-09-25": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-09-26": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-09-27": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-09-28": {
+      "aufrufe": 2,
+      "aufrufe_eindeutig": 2,
+      "klone": 48,
+      "klone_eindeutig": 27
+    },
+    "2026-09-29": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 17,
+      "klone_eindeutig": 13
+    },
+    "2026-09-30": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-10-01": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-10-02": {
+      "aufrufe": 1,
+      "aufrufe_eindeutig": 1,
+      "klone": 30,
+      "klone_eindeutig": 21
+    },
+    "2026-10-03": {
+      "aufrufe": 3,
+      "aufrufe_eindeutig": 3,
+      "klone": 16,
+      "klone_eindeutig": 12
+    },
+    "2026-10-04": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-10-05": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-10-06": {
+      "aufrufe": 2,
+      "aufrufe_eindeutig": 1,
+      "klone": 2,
+      "klone_eindeutig": 2
+    }
+  },
+  "verlauf": [
+    {
+      "datum": "2026-10-07",
+      "sterne": 2,
+      "forks": 0,
+      "beobachter": 1,
+      "issues_offen": 0,
+      "aufrufe_14t": 8,
+      "aufrufe_eindeutig_14t": 6,
+      "klone_14t": 115,
+      "klone_eindeutig_14t": 75
+    }
+  ],
+  "verweise": {
+    "2026-10-07": [
+      {
+        "quelle": "github.com",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ]
+  },
+  "pfade": {
+    "2026-10-07": [
+      {
+        "pfad": "/Sertac0708/feature-scout",
+        "aufrufe": 5,
+        "eindeutig": 4
+      },
+      {
+        "pfad": "/Sertac0708/feature-scout/blob/main/README.de.md",
+        "aufrufe": 2,
+        "eindeutig": 2
+      },
+      {
+        "pfad": "/Sertac0708/feature-scout/fork",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ]
+  },
+  "erstellt": "2026-09-28"
+}

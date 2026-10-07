@@ -1,0 +1,229 @@
+#!/usr/bin/env python3
+"""Sammelt GitHub-Zugriffszahlen für die Repos aus repos.txt und hebt sie dauerhaft auf.
+
+GitHub zeigt Traffic (Aufrufe, Klone, Verweise) nur für die letzten 14 Tage. Dieses Werkzeug
+holt die Tageswerte, verschmilzt sie nach Datum mit dem Bestand in daten/<repo>.json und
+erzeugt daraus README.md neu. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
+
+    STATISTIK_TOKEN=$(gh auth token) python3 werkzeuge/sammeln.py
+
+Nur Python-Standardbibliothek. Der Token kommt ausschließlich aus der Umgebung und wird
+nirgends gespeichert oder ausgegeben.
+"""
+
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
+
+WURZEL = Path(__file__).resolve().parent.parent
+DATEN = WURZEL / "daten"
+REPOS_DATEI = WURZEL / "repos.txt"
+README = WURZEL / "README.md"
+API = "https://api.github.com"
+WOCHEN_IM_BERICHT = 8
+
+
+def token() -> str:
+    wert = os.environ.get("STATISTIK_TOKEN", "").strip()
+    if not wert:
+        sys.exit(
+            "STATISTIK_TOKEN fehlt. Fein abgestuften Token anlegen (Administration: read, "
+            "Metadata: read auf den Repos aus repos.txt) und als Secret STATISTIK_TOKEN hinterlegen."
+        )
+    return wert
+
+
+def api(pfad: str, tok: str):
+    anfrage = urllib.request.Request(
+        API + pfad,
+        headers={
+            "Authorization": f"Bearer {tok}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "User-Agent": "repo-statistik",
+        },
+    )
+    with urllib.request.urlopen(anfrage, timeout=30) as antwort:
+        return json.load(antwort)
+
+
+def repos_lesen() -> list[str]:
+    repos = []
+    for zeile in REPOS_DATEI.read_text(encoding="utf-8").splitlines():
+        zeile = zeile.strip()
+        if zeile and not zeile.startswith("#"):
+            repos.append(zeile)
+    if not repos:
+        sys.exit("repos.txt enthält kein Repo.")
+    return repos
+
+
+def datei_fuer(repo: str) -> Path:
+    return DATEN / (repo.split("/", 1)[1] + ".json")
+
+
+def laden(repo: str) -> dict:
+    pfad = datei_fuer(repo)
+    if pfad.exists():
+        return json.loads(pfad.read_text(encoding="utf-8"))
+    return {
+        "repo": repo,
+        "aufzeichnung_seit": None,
+        "aktualisiert": None,
+        "tage": {},
+        "verlauf": [],
+        "verweise": {},
+        "pfade": {},
+    }
+
+
+def speichern(repo: str, d: dict) -> None:
+    DATEN.mkdir(exist_ok=True)
+    datei_fuer(repo).write_text(
+        json.dumps(d, ensure_ascii=False, indent=2, sort_keys=False) + "\n", encoding="utf-8"
+    )
+
+
+def sammeln(repo: str, tok: str, heute: str, jetzt: str) -> dict:
+    d = laden(repo)
+    meta = api(f"/repos/{repo}", tok)
+    aufrufe = api(f"/repos/{repo}/traffic/views", tok)
+    klone = api(f"/repos/{repo}/traffic/clones", tok)
+    verweise = api(f"/repos/{repo}/traffic/popular/referrers", tok)
+    pfade = api(f"/repos/{repo}/traffic/popular/paths", tok)
+
+    # Tageswerte nach Datum verschmelzen. Der jüngste Tag kann beim nächsten Lauf noch
+    # wachsen, deshalb gewinnt immer der neu geholte Wert.
+    for eintrag in aufrufe.get("views", []):
+        tag = d["tage"].setdefault(eintrag["timestamp"][:10], {})
+        tag["aufrufe"] = eintrag["count"]
+        tag["aufrufe_eindeutig"] = eintrag["uniques"]
+    for eintrag in klone.get("clones", []):
+        tag = d["tage"].setdefault(eintrag["timestamp"][:10], {})
+        tag["klone"] = eintrag["count"]
+        tag["klone_eindeutig"] = eintrag["uniques"]
+    d["tage"] = dict(sorted(d["tage"].items()))
+
+    # Momentaufnahme je Lauf: Sterne usw. plus die echten 14-Tage-Eindeutigkeitszahlen von GitHub.
+    d["verlauf"] = [v for v in d["verlauf"] if v["datum"] != heute]
+    d["verlauf"].append(
+        {
+            "datum": heute,
+            "sterne": meta["stargazers_count"],
+            "forks": meta["forks_count"],
+            "beobachter": meta["subscribers_count"],
+            "issues_offen": meta["open_issues_count"],
+            "aufrufe_14t": aufrufe.get("count", 0),
+            "aufrufe_eindeutig_14t": aufrufe.get("uniques", 0),
+            "klone_14t": klone.get("count", 0),
+            "klone_eindeutig_14t": klone.get("uniques", 0),
+        }
+    )
+    d["verlauf"].sort(key=lambda v: v["datum"])
+    d["verweise"][heute] = [
+        {"quelle": v["referrer"], "aufrufe": v["count"], "eindeutig": v["uniques"]} for v in verweise
+    ]
+    d["pfade"][heute] = [
+        {"pfad": p["path"], "aufrufe": p["count"], "eindeutig": p["uniques"]} for p in pfade
+    ]
+    # GitHub füllt das 14-Tage-Fenster mit Null-Tagen auf, auch vor dem Anlegedatum des Repos.
+    erstellt = meta["created_at"][:10]
+    d["erstellt"] = erstellt
+    d["aufzeichnung_seit"] = d["aufzeichnung_seit"] or max(erstellt, min(d["tage"]) if d["tage"] else heute)
+    d["aktualisiert"] = jetzt
+    speichern(repo, d)
+    return d
+
+
+def wochen(d: dict) -> list[dict]:
+    """Tageswerte zu Kalenderwochen (Montag bis Sonntag) aufsummieren, jüngste zuerst."""
+    summen: dict[date, dict] = {}
+    for tag, werte in d["tage"].items():
+        t = date.fromisoformat(tag)
+        montag = t - timedelta(days=t.weekday())
+        w = summen.setdefault(montag, {"aufrufe": 0, "klone": 0, "tage": 0})
+        w["aufrufe"] += werte.get("aufrufe", 0)
+        w["klone"] += werte.get("klone", 0)
+        w["tage"] += 1
+    return [{"montag": m, **w} for m, w in sorted(summen.items(), reverse=True)]
+
+
+def readme_schreiben(alle: list[dict], jetzt: str) -> None:
+    zeilen = [
+        "# Repo-Statistik",
+        "",
+        "Zugriffszahlen der öffentlichen Repos, wöchentlich von `werkzeuge/sammeln.py` gesammelt.",
+        "GitHub selbst behält Traffic nur 14 Tage, hier bleibt er. Diese Datei wird bei jedem Lauf",
+        "neu erzeugt, Änderungen von Hand gehen verloren.",
+        "",
+        f"Stand: {jetzt}",
+        "",
+        "Lesehilfe: *Klone* zählt jedes `git clone`, also auch Plugin-Installationen über einen",
+        "Claude-Code-Marktplatz, aber ebenso Bots und Spiegeldienste. *Eindeutig* ist nur innerhalb",
+        "der 14-Tage-Zahl von GitHub belastbar; Tageswerte lassen sich dafür nicht aufsummieren.",
+        "",
+    ]
+    for d in alle:
+        letzter = d["verlauf"][-1]
+        gesamt_aufrufe = sum(t.get("aufrufe", 0) for t in d["tage"].values())
+        gesamt_klone = sum(t.get("klone", 0) for t in d["tage"].values())
+        zeilen += [
+            f"## {d['repo']}",
+            "",
+            f"- Sterne {letzter['sterne']} · Forks {letzter['forks']} · Beobachter {letzter['beobachter']}"
+            f" · offene Issues {letzter['issues_offen']}",
+            f"- Letzte 14 Tage laut GitHub: {letzter['klone_14t']} Klone von"
+            f" {letzter['klone_eindeutig_14t']} Rechnern, {letzter['aufrufe_14t']} Aufrufe von"
+            f" {letzter['aufrufe_eindeutig_14t']} Besuchern",
+            f"- Seit Aufzeichnungsbeginn ({d['aufzeichnung_seit']}): {gesamt_klone} Klone,"
+            f" {gesamt_aufrufe} Aufrufe",
+            "",
+            "| Woche ab | Klone | Aufrufe | Tage mit Daten |",
+            "|---|---:|---:|---:|",
+        ]
+        for w in wochen(d)[:WOCHEN_IM_BERICHT]:
+            zeilen.append(f"| {w['montag'].isoformat()} | {w['klone']} | {w['aufrufe']} | {w['tage']} |")
+        verweise = d["verweise"].get(letzter["datum"], [])
+        if verweise:
+            quellen = ", ".join(f"{v['quelle']} ({v['eindeutig']})" for v in verweise)
+            zeilen += ["", f"Verweise (eindeutige Besucher, 14 Tage): {quellen}"]
+        zeilen.append("")
+    README.write_text("\n".join(zeilen), encoding="utf-8")
+
+
+def main() -> int:
+    tok = token()
+    jetzt_dt = datetime.now(timezone.utc)
+    heute = jetzt_dt.date().isoformat()
+    jetzt = jetzt_dt.strftime("%Y-%m-%d %H:%M UTC")
+    alle = []
+    fehler = 0
+    for repo in repos_lesen():
+        try:
+            d = sammeln(repo, tok, heute, jetzt)
+        except urllib.error.HTTPError as e:
+            fehler += 1
+            grund = {
+                401: "Token ungültig oder abgelaufen",
+                403: "Token darf Traffic nicht lesen (Administration: read fehlt?)",
+                404: "Repo nicht gefunden oder Token hat keinen Zugriff darauf",
+            }.get(e.code, f"HTTP {e.code}")
+            print(f"FEHLER {repo}: {grund}")
+            continue
+        letzter = d["verlauf"][-1]
+        print(
+            f"{repo}: {len(d['tage'])} Tage gespeichert, 14 Tage: {letzter['klone_14t']} Klone /"
+            f" {letzter['klone_eindeutig_14t']} Rechner, Sterne {letzter['sterne']}"
+        )
+        alle.append(d)
+    if alle:
+        readme_schreiben(alle, jetzt)
+    return 1 if fehler else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
