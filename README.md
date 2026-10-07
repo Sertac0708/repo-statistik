@@ -2,6 +2,8 @@
 
 > **Created by Sertac · Made by [NetBoosting](https://netboosting.de)** · Free to use under the MIT license · 🇩🇪 [Deutsche Anleitung](README.de.md)
 
+![Active installs this week](https://heartbeat-production-40b4.up.railway.app/badge.svg?lang=en)
+
 GitHub shows you how often each repo was viewed and cloned. But only for the last 14 days,
 then it is gone. Repo-Statistik ("repo statistics") is a GitHub Action that fetches those
 numbers every Monday, stores them in your own repo and shows them as a table and a chart.
@@ -11,13 +13,16 @@ telemetry into your programs: every install of a Claude Code plugin, every `git 
 every visit to the repo page is already in GitHub's numbers. This tool only keeps them
 before GitHub throws them away.
 
+The tool itself sends us an anonymous heartbeat. The section "What the tool sends" lists
+exactly what is in it and how to turn it off.
+
 ## These are our real numbers
 
 This repo is the guide and the result at the same time. The block below is rewritten by the
 tool every Monday with the numbers of our public repos.
 
 <!-- statistik:start -->
-As of 2026-10-07 11:33 UTC. This block is written by the tool; manual edits will be overwritten.
+As of 2026-10-07 11:44 UTC. This block is written by the tool; manual edits will be overwritten.
 
 ### Sertac0708/feature-scout
 
@@ -182,10 +187,25 @@ Same result as in the Action, just on your machine. Useful to check the token an
 
 ## What the tool sends and stores
 
-Nothing to us. It talks only to `api.github.com`, with your token, inside your Action, and
-stores the results in your repo. No heartbeat, no telemetry, no server run by the author.
-Should a later version get a heartbeat, it will be described here and in
-[PRIVACY.md](PRIVACY.md): anonymous, on by default, with a switch. There is none today.
+To GitHub: the queries with your token, inside your Action. The results go into your repo.
+
+To us: one heartbeat per run. It is the only way we learn how many installations of the tool
+are running, and it is built the way we would want a heartbeat in someone else's software to
+be built. It contains exactly four things:
+
+- a random install id, created on the first run and kept in `daten/install-id.txt`
+- the tool version
+- the number of watched repos, only the number
+- whether the run succeeded
+
+No repo names, no traffic numbers, no people. The receiver runs on Railway, stores no IP
+addresses, not even in its access log, and its code is public in [`heartbeat/`](heartbeat/).
+The total is the badge at the top and <https://heartbeat-production-40b4.up.railway.app/zahlen>.
+
+To turn it off: in your repo go to Settings → Secrets and variables → Actions → Variables
+and set `DO_NOT_TRACK` to `1`. Locally, the same environment variable works. The run then
+reports "Heartbeat: aus" and sends nothing. Everything else works as before. More in
+[PRIVACY.md](PRIVACY.md).
 
 ## Limits
 

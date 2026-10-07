@@ -2,6 +2,8 @@
 
 > **Erstellt von Sertac · Made by [NetBoosting](https://netboosting.de)** · Frei nutzbar unter MIT-Lizenz · 🇬🇧 [English guide](README.md)
 
+![Aktive Installationen diese Woche](https://heartbeat-production-40b4.up.railway.app/badge.svg)
+
 GitHub zeigt dir für jedes Repo, wie oft es aufgerufen und geklont wurde. Aber nur für die
 letzten 14 Tage, danach ist es weg. Repo-Statistik ist eine GitHub Action, die diese Zahlen
 jeden Montag abholt, in deinem eigenen Repo speichert und als Tabelle und Grafik anzeigt.
@@ -11,13 +13,16 @@ und keine Telemetrie in deine Programme einbauen: Jede Installation eines Claude
 jedes `git clone`, jeder Besuch der Repo-Seite steht in GitHubs Zahlen. Dieses Werkzeug hebt
 sie nur auf, bevor GitHub sie wegwirft.
 
+Das Werkzeug selbst schickt uns einen anonymen Heartbeat. Der Abschnitt „Was das Werkzeug
+sendet" sagt genau, was drinsteht und wie du ihn abschaltest.
+
 ## Das sind unsere echten Zahlen
 
 Dieses Repo ist Anleitung und Ergebnis zugleich. Der Block unten wird jeden Montag vom
 Werkzeug neu geschrieben, mit den Zahlen unserer öffentlichen Repos.
 
 <!-- statistik:start -->
-Stand: 2026-10-07 11:33 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
+Stand: 2026-10-07 11:44 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
 
 ### Sertac0708/feature-scout
 
@@ -186,11 +191,27 @@ Push zu sehen, ob Token und `repos.txt` stimmen.
 
 ## Was das Werkzeug sendet und speichert
 
-Nichts an uns. Es spricht nur mit `api.github.com`, mit deinem Token, in deiner Action, und
-legt die Ergebnisse in deinem Repo ab. Kein Heartbeat, keine Telemetrie, kein Server des
-Autors. Sollte eine spätere Version einen Heartbeat bekommen, steht er hier und in
-[PRIVACY.md](PRIVACY.md) beschrieben: anonym, standardmäßig an, mit Abschalter. Heute gibt
-es keinen.
+An GitHub: die Abfragen mit deinem Token, in deiner Action. Die Ergebnisse legt es in deinem
+Repo ab.
+
+An uns: einen Heartbeat, einmal pro Lauf. Er ist der einzige Weg, auf dem wir erfahren, wie
+viele Installationen des Werkzeugs laufen, und er ist so gebaut, wie wir uns einen Heartbeat
+in fremder Software wünschen. Er enthält genau vier Dinge:
+
+- eine zufällige Install-ID, beim ersten Lauf erzeugt und in `daten/install-id.txt` abgelegt
+- die Version des Werkzeugs
+- die Anzahl der beobachteten Repos, nur die Zahl
+- ob der Lauf geklappt hat
+
+Keine Repo-Namen, keine Zugriffszahlen, keine Personen. Der Empfänger läuft auf Railway,
+speichert keine IP-Adressen, auch nicht im Zugriffslog, und sein Code liegt offen in
+[`heartbeat/`](heartbeat/). Die Summe siehst du oben im Abzeichen und unter
+<https://heartbeat-production-40b4.up.railway.app/zahlen>.
+
+Abschalten: im Repo unter Settings → Secrets and variables → Actions → Variables die Variable
+`DO_NOT_TRACK` auf `1` setzen. Lokal reicht dieselbe Umgebungsvariable. Der Lauf meldet dann
+„Heartbeat: aus" und sendet nichts. Alles andere funktioniert unverändert. Mehr dazu in
+[PRIVACY.md](PRIVACY.md).
 
 ## Grenzen
 

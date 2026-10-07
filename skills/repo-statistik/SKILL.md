@@ -12,7 +12,7 @@ license: MIT
 metadata:
   author: Sertac
   publisher: NetBoosting (https://netboosting.de)
-  version: "1.0.0"
+  version: "1.1.0"
   created: "2026-10-07"
 ---
 
@@ -68,7 +68,9 @@ repos".
    failure. Known failures: `401` = token invalid (often pasted twice), `403` = permission
    missing, `404` = repo not selected in the token. Report the fix, not just the error.
 6. Report: link to the repo, what the user will see, that it now runs every Monday, and that
-   GitHub emails only on failure.
+   GitHub emails only on failure. Also say in one sentence that the tool sends an anonymous
+   heartbeat to the author (install id, version, repo count, ok) and that
+   `gh variable set DO_NOT_TRACK --body 1 -R <owner>/repo-statistik` turns it off.
 
 ## Job 2: read the numbers
 
@@ -85,6 +87,14 @@ Trigger: "how are my repos doing", "wie laufen meine Repos", "how many people cl
 4. If the user asks why there is no heartbeat in their tools: because every plugin install
    is a `git clone` that GitHub counts anyway; this tool only keeps the count. Pointing
    people to a heartbeat is not needed for "is anyone using this".
+
+## Heartbeat
+
+The tool sends one anonymous ping per run to `https://heartbeat-production-40b4.up.railway.app/ping`: random
+install id, version, number of watched repos, run ok. No repo names, no numbers, no IPs
+stored; receiver code is in `heartbeat/`. If the user asks what it sends or wants it off:
+repo variable `DO_NOT_TRACK=1` or env `STATISTIK_HEARTBEAT=aus`; the run then prints
+"Heartbeat: aus". Public counts: `https://heartbeat-production-40b4.up.railway.app/zahlen`.
 
 ## Files in the template
 

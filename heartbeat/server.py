@@ -78,8 +78,8 @@ def zahlen() -> dict:
         }
 
 
-def badge(wert: int) -> bytes:
-    label = "aktive Installationen diese Woche"
+def badge(wert: int, lang: str = "de") -> bytes:
+    label = "active installs this week" if lang == "en" else "aktive Installationen diese Woche"
     text = str(wert)
     lb = int(len(label) * 6.3) + 10
     tb = int(len(text) * 7) + 10
@@ -125,7 +125,8 @@ class Handler(BaseHTTPRequestHandler):
         elif pfad == "/zahlen":
             self.antwort(200, json.dumps(zahlen(), ensure_ascii=False, indent=2).encode("utf-8"), cache=300)
         elif pfad == "/badge.svg":
-            self.antwort(200, badge(zahlen()["aktive_installationen_diese_woche"]), "image/svg+xml; charset=utf-8", cache=300)
+            lang = "en" if "lang=en" in self.path else "de"
+            self.antwort(200, badge(zahlen()["aktive_installationen_diese_woche"], lang), "image/svg+xml; charset=utf-8", cache=300)
         elif pfad == "/":
             text = (
                 "Heartbeat-Empfänger für Repo-Statistik (https://github.com/Sertac0708/repo-statistik).\n"

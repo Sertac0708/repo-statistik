@@ -4,6 +4,7 @@
 # Von Hand starten: Actions -> „Statistik sammeln“ -> Run workflow.
 # Braucht das Secret STATISTIK_TOKEN: fein abgestufter Token, nur lesend (Administration + Metadata),
 # nur für die gelisteten Repos. Fehlt er, schlägt der Lauf mit klarer Meldung fehl (GitHub mailt).
+# Heartbeat (anonym, siehe README) abschalten: Repo-Variable DO_NOT_TRACK=1 (Settings -> Variables).
 name: Statistik sammeln
 
 on:
@@ -23,6 +24,8 @@ jobs:
       - name: Zahlen holen
         env:
           STATISTIK_TOKEN: ${{ secrets.STATISTIK_TOKEN }}
+          DO_NOT_TRACK: ${{ vars.DO_NOT_TRACK }}
+          STATISTIK_HEARTBEAT: ${{ vars.STATISTIK_HEARTBEAT }}
         run: python3 werkzeuge/sammeln.py
       - name: Änderungen einchecken
         run: |

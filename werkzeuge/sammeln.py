@@ -6,7 +6,8 @@ holt die Tageswerte, verschmilzt sie nach Datum mit dem Bestand in daten/<repo>.
 zeichnet je Repo eine Wochengrafik (grafik/<repo>.svg, hell und dunkel) und schreibt den
 Zahlenblock zwischen den Markern <!-- statistik:start --> und <!-- statistik:end --> in
 README.md (englisch) und README.de.md (deutsch) neu. Der übrige Text der READMEs bleibt
-unberührt. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
+unberührt. Zum Schluss ein anonymer Heartbeat an den Autor (Install-ID, Version, Anzahl Repos,
+ok), abschaltbar mit DO_NOT_TRACK=1. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
 
     STATISTIK_TOKEN=$(gh auth token) python3 werkzeuge/sammeln.py
 
@@ -16,7 +17,9 @@ nirgends gespeichert oder ausgegeben.
 
 import json
 import os
+import re
 import sys
+import uuid
 import urllib.error
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -28,6 +31,10 @@ REPOS_DATEI = WURZEL / "repos.txt"
 READMES = ((WURZEL / "README.md", "en"), (WURZEL / "README.de.md", "de"))
 MARKER_START = "<!-- statistik:start -->"
 MARKER_ENDE = "<!-- statistik:end -->"
+VERSION = "1.1.0"
+# Heartbeat-Empfänger (Code: heartbeat/server.py). Abschalten: DO_NOT_TRACK=1 oder STATISTIK_HEARTBEAT=aus.
+HEARTBEAT_URL = "https://heartbeat-production-40b4.up.railway.app/ping"
+INSTALL_ID_DATEI = DATEN / "install-id.txt"
 GRAFIK = WURZEL / "grafik"
 API = "https://api.github.com"
 WOCHEN_IM_BERICHT = 8
@@ -333,6 +340,47 @@ def readmes_schreiben(alle: list[dict], jetzt: str) -> None:
             datei.write_text(neu, encoding="utf-8")
 
 
+def heartbeat_aus() -> bool:
+    dnt = os.environ.get("DO_NOT_TRACK", "").strip().lower()
+    hb = os.environ.get("STATISTIK_HEARTBEAT", "").strip().lower()
+    return dnt in ("1", "true", "ja", "yes", "on") or hb in ("0", "aus", "off", "false", "nein", "no")
+
+
+def install_id() -> str:
+    """Zufällige ID, beim ersten Lauf erzeugt und in daten/ abgelegt (wird mit eingecheckt)."""
+    DATEN.mkdir(exist_ok=True)
+    if INSTALL_ID_DATEI.exists():
+        wert = INSTALL_ID_DATEI.read_text(encoding="utf-8").strip()
+        if re.fullmatch(r"[0-9a-f-]{36}", wert):
+            return wert
+    wert = str(uuid.uuid4())
+    INSTALL_ID_DATEI.write_text(wert + "\n", encoding="utf-8")
+    return wert
+
+
+def heartbeat(anzahl_repos: int, ok: bool) -> None:
+    """Ein anonymer Ping pro Lauf: Install-ID, Version, Anzahl Repos, ok. Keine Repo-Namen, keine
+    Zahlen. Darf den Lauf nie scheitern lassen. Abschalten: DO_NOT_TRACK=1 oder STATISTIK_HEARTBEAT=aus."""
+    if heartbeat_aus():
+        print("Heartbeat: aus")
+        return
+    daten = json.dumps(
+        {"install_id": install_id(), "version": VERSION, "repos": anzahl_repos, "ok": ok}
+    ).encode("utf-8")
+    anfrage = urllib.request.Request(
+        HEARTBEAT_URL,
+        data=daten,
+        method="POST",
+        headers={"Content-Type": "application/json", "User-Agent": f"repo-statistik/{VERSION}"},
+    )
+    try:
+        with urllib.request.urlopen(anfrage, timeout=5):
+            pass
+        print("Heartbeat gesendet (anonym: Install-ID, Version, Anzahl Repos, ok · abschalten: DO_NOT_TRACK=1)")
+    except Exception as e:  # noqa: BLE001
+        print(f"Heartbeat nicht gesendet ({type(e).__name__}), Lauf läuft weiter")
+
+
 def main() -> int:
     tok = token()
     jetzt_dt = datetime.now(timezone.utc)
@@ -340,7 +388,8 @@ def main() -> int:
     jetzt = jetzt_dt.strftime("%Y-%m-%d %H:%M UTC")
     alle = []
     fehler = 0
-    for repo in repos_lesen():
+    repos = repos_lesen()
+    for repo in repos:
         try:
             d = sammeln(repo, tok, heute, jetzt)
         except urllib.error.HTTPError as e:
@@ -361,6 +410,7 @@ def main() -> int:
         alle.append(d)
     if alle:
         readmes_schreiben(alle, jetzt)
+    heartbeat(len(repos), fehler == 0)
     return 1 if fehler else 0
 
 
