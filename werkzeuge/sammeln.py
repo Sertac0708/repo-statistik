@@ -3,7 +3,8 @@
 
 GitHub zeigt Traffic (Aufrufe, Klone, Verweise) nur für die letzten 14 Tage. Dieses Werkzeug
 holt die Tageswerte, verschmilzt sie nach Datum mit dem Bestand in daten/<repo>.json und
-erzeugt daraus README.md neu. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
+erzeugt daraus README.md und je Repo eine Wochengrafik (grafik/<repo>.svg, hell und dunkel)
+neu. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
 
     STATISTIK_TOKEN=$(gh auth token) python3 werkzeuge/sammeln.py
 
@@ -23,8 +24,10 @@ WURZEL = Path(__file__).resolve().parent.parent
 DATEN = WURZEL / "daten"
 REPOS_DATEI = WURZEL / "repos.txt"
 README = WURZEL / "README.md"
+GRAFIK = WURZEL / "grafik"
 API = "https://api.github.com"
 WOCHEN_IM_BERICHT = 8
+WOCHEN_IN_GRAFIK = 16
 
 
 def token() -> str:
@@ -140,11 +143,18 @@ def sammeln(repo: str, tok: str, heute: str, jetzt: str) -> dict:
 
 
 def wochen(d: dict) -> list[dict]:
-    """Tageswerte zu Kalenderwochen (Montag bis Sonntag) aufsummieren, jüngste zuerst."""
+    """Tageswerte zu Kalenderwochen (Montag bis Sonntag) aufsummieren, jüngste zuerst.
+
+    Wochen, die ganz vor dem Aufzeichnungsbeginn liegen, fallen weg: GitHub füllt das
+    14-Tage-Fenster mit Null-Tagen auf, auch für Zeiten, in denen das Repo noch nicht existierte.
+    """
+    seit = date.fromisoformat(d["aufzeichnung_seit"])
     summen: dict[date, dict] = {}
     for tag, werte in d["tage"].items():
         t = date.fromisoformat(tag)
         montag = t - timedelta(days=t.weekday())
+        if montag + timedelta(days=6) < seit:
+            continue
         w = summen.setdefault(montag, {"aufrufe": 0, "klone": 0, "tage": 0})
         w["aufrufe"] += werte.get("aufrufe", 0)
         w["klone"] += werte.get("klone", 0)
@@ -152,11 +162,104 @@ def wochen(d: dict) -> list[dict]:
     return [{"montag": m, **w} for m, w in sorted(summen.items(), reverse=True)]
 
 
+# Farben nach der Diagramm-Richtlinie (dataviz-Skill), je Modus eigens gestuft und gegen
+# GitHubs Seitenhintergrund geprüft (hell #ffffff, dunkel #0d1117): alle Prüfungen bestanden.
+FARBEN = {
+    "hell": {
+        "text": "#0b0b0b", "text2": "#52514e", "muted": "#6b6a66",
+        "raster": "#e6e5e1", "achse": "#c9c8c3", "klone": "#2a78d6", "aufrufe": "#eb6834",
+    },
+    "dunkel": {
+        "text": "#ffffff", "text2": "#c3c2b7", "muted": "#8f8e86",
+        "raster": "#2a2f36", "achse": "#3d434b", "klone": "#3987e5", "aufrufe": "#d95926",
+    },
+}
+SCHRIFT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'
+
+
+def _schritt(maximum: int) -> int:
+    """Runde Achsenschritte, höchstens vier Rasterlinien."""
+    for s in (1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 5000, 10000):
+        if maximum / s <= 4:
+            return s
+    return 20000
+
+
+def _tafel(reihe: list[dict], feld: str, titel: str, farbe: str, f: dict, y0: int) -> list[str]:
+    """Eine Tafel: Säulen je Woche, Raster, Achsenwerte, Beschriftung der letzten und höchsten Säule."""
+    links, rechts, oben, unten = 44, 16, 36, 24
+    breite, hoehe = 720, 110
+    plot_b = breite - links - rechts
+    grund = y0 + oben + hoehe
+    werte = [w[feld] for w in reihe]
+    maximum = max(werte) if werte else 0
+    schritt = _schritt(max(maximum, 1))
+    decke = max(schritt, -(-maximum // schritt) * schritt)
+    out = [f'<text x="{links}" y="{y0 + 16}" font-size="13" font-weight="600" fill="{f["text"]}">{titel}</text>']
+    tick = 0
+    while tick <= decke:
+        y = grund - tick / decke * hoehe
+        out.append(f'<line x1="{links}" x2="{breite - rechts}" y1="{y:.1f}" y2="{y:.1f}" '
+                   f'stroke="{f["achse"] if tick == 0 else f["raster"]}" stroke-width="1"/>')
+        out.append(f'<text x="{links - 8}" y="{y + 4:.1f}" font-size="11" text-anchor="end" '
+                   f'fill="{f["muted"]}">{tick:,}</text>'.replace(",", "."))
+        tick += schritt
+    n = len(reihe)
+    if n == 0:
+        out.append(f'<text x="{links + plot_b / 2:.1f}" y="{grund - hoehe / 2:.1f}" font-size="12" '
+                   f'text-anchor="middle" fill="{f["muted"]}">Noch keine Daten</text>')
+        return out
+    band = plot_b / n
+    sb = min(24, band * 0.6)
+    index_max = werte.index(maximum) if maximum > 0 else -1
+    jede = 1 if n <= 8 else 2
+    for i, w in enumerate(reihe):
+        x = links + i * band + (band - sb) / 2
+        v = w[feld]
+        if v > 0:
+            h = v / decke * hoehe
+            r = min(4, sb / 2, h)
+            y = grund - h
+            out.append(
+                f'<path fill="{farbe}" d="M{x:.1f},{grund} V{y + r:.1f} Q{x:.1f},{y:.1f} {x + r:.1f},{y:.1f} '
+                f'H{x + sb - r:.1f} Q{x + sb:.1f},{y:.1f} {x + sb:.1f},{y + r:.1f} V{grund} Z"/>'
+            )
+            if i == n - 1 or i == index_max:
+                out.append(f'<text x="{x + sb / 2:.1f}" y="{y - 5:.1f}" font-size="11" text-anchor="middle" '
+                           f'fill="{f["text2"]}">{v:,}</text>'.replace(",", "."))
+        if (n - 1 - i) % jede == 0:
+            m = w["montag"]
+            out.append(f'<text x="{x + sb / 2:.1f}" y="{grund + 16}" font-size="11" text-anchor="middle" '
+                       f'fill="{f["muted"]}">{m.day:02d}.{m.month:02d}.</text>')
+    return out
+
+
+def svg_schreiben(d: dict) -> None:
+    """Je Repo zwei Grafiken (hell/dunkel): Klone je Woche und Aufrufe je Woche, zwei Tafeln."""
+    GRAFIK.mkdir(exist_ok=True)
+    reihe = list(reversed(wochen(d)[:WOCHEN_IN_GRAFIK]))
+    name = d["repo"].split("/", 1)[1]
+    tafel_h = 36 + 110 + 24
+    gesamt_h = 2 * tafel_h + 8
+    for modus, f in FARBEN.items():
+        teile = [
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="720" height="{gesamt_h}" '
+            f'viewBox="0 0 720 {gesamt_h}" role="img" font-family=\'{SCHRIFT}\'>',
+            f'<title>Klone und Aufrufe je Woche für {d["repo"]}</title>',
+        ]
+        teile += _tafel(reihe, "klone", "Klone je Woche", f["klone"], f, 0)
+        teile += _tafel(reihe, "aufrufe", "Aufrufe je Woche", f["aufrufe"], f, tafel_h + 8)
+        teile.append("</svg>")
+        datei = GRAFIK / (name + (".svg" if modus == "hell" else "-dunkel.svg"))
+        datei.write_text("\n".join(teile) + "\n", encoding="utf-8")
+
+
 def readme_schreiben(alle: list[dict], jetzt: str) -> None:
     zeilen = [
         "# Repo-Statistik",
         "",
-        "Zugriffszahlen der öffentlichen Repos, wöchentlich von `werkzeuge/sammeln.py` gesammelt.",
+        "Zugriffszahlen der öffentlichen Repos, wöchentlich von `werkzeuge/sammeln.py` gesammelt,",
+        "mit Wochengrafik je Repo (Grafik und Tabelle zeigen dieselben Zahlen).",
         "GitHub selbst behält Traffic nur 14 Tage, hier bleibt er. Diese Datei wird bei jedem Lauf",
         "neu erzeugt, Änderungen von Hand gehen verloren.",
         "",
@@ -168,6 +271,7 @@ def readme_schreiben(alle: list[dict], jetzt: str) -> None:
         "",
     ]
     for d in alle:
+        name = d["repo"].split("/", 1)[1]
         letzter = d["verlauf"][-1]
         gesamt_aufrufe = sum(t.get("aufrufe", 0) for t in d["tage"].values())
         gesamt_klone = sum(t.get("klone", 0) for t in d["tage"].values())
@@ -181,6 +285,11 @@ def readme_schreiben(alle: list[dict], jetzt: str) -> None:
             f" {letzter['aufrufe_eindeutig_14t']} Besuchern",
             f"- Seit Aufzeichnungsbeginn ({d['aufzeichnung_seit']}): {gesamt_klone} Klone,"
             f" {gesamt_aufrufe} Aufrufe",
+            "",
+            "<picture>",
+            f'  <source media="(prefers-color-scheme: dark)" srcset="grafik/{name}-dunkel.svg">',
+            f'  <img alt="Klone und Aufrufe je Woche für {name}" src="grafik/{name}.svg" width="720">',
+            "</picture>",
             "",
             "| Woche ab | Klone | Aufrufe | Tage mit Daten |",
             "|---|---:|---:|---:|",
@@ -214,6 +323,7 @@ def main() -> int:
             }.get(e.code, f"HTTP {e.code}")
             print(f"FEHLER {repo}: {grund}")
             continue
+        svg_schreiben(d)
         letzter = d["verlauf"][-1]
         print(
             f"{repo}: {len(d['tage'])} Tage gespeichert, 14 Tage: {letzter['klone_14t']} Klone /"

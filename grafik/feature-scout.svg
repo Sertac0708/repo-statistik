@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="348" viewBox="0 0 720 348" role="img" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'>
+<title>Klone und Aufrufe je Woche für Sertac0708/feature-scout</title>
+<text x="44" y="16" font-size="13" font-weight="600" fill="#0b0b0b">Klone je Woche</text>
+<line x1="44" x2="704" y1="146.0" y2="146.0" stroke="#c9c8c3" stroke-width="1"/>
+<text x="36" y="150.0" font-size="11" text-anchor="end" fill="#6b6a66">0</text>
+<line x1="44" x2="704" y1="109.3" y2="109.3" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="113.3" font-size="11" text-anchor="end" fill="#6b6a66">50</text>
+<line x1="44" x2="704" y1="72.7" y2="72.7" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="76.7" font-size="11" text-anchor="end" fill="#6b6a66">100</text>
+<line x1="44" x2="704" y1="36.0" y2="36.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="40.0" font-size="11" text-anchor="end" fill="#6b6a66">150</text>
+<path fill="#2a78d6" d="M197.0,146 V67.1 Q197.0,63.1 201.0,63.1 H217.0 Q221.0,63.1 221.0,67.1 V146 Z"/>
+<text x="209.0" y="58.1" font-size="11" text-anchor="middle" fill="#52514e">113</text>
+<text x="209.0" y="162" font-size="11" text-anchor="middle" fill="#6b6a66">28.09.</text>
+<path fill="#2a78d6" d="M527.0,146 V146.0 Q527.0,144.5 528.5,144.5 H549.5 Q551.0,144.5 551.0,146.0 V146 Z"/>
+<text x="539.0" y="139.5" font-size="11" text-anchor="middle" fill="#52514e">2</text>
+<text x="539.0" y="162" font-size="11" text-anchor="middle" fill="#6b6a66">05.10.</text>
+<text x="44" y="194" font-size="13" font-weight="600" fill="#0b0b0b">Aufrufe je Woche</text>
+<line x1="44" x2="704" y1="324.0" y2="324.0" stroke="#c9c8c3" stroke-width="1"/>
+<text x="36" y="328.0" font-size="11" text-anchor="end" fill="#6b6a66">0</text>
+<line x1="44" x2="704" y1="287.3" y2="287.3" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="291.3" font-size="11" text-anchor="end" fill="#6b6a66">2</text>
+<line x1="44" x2="704" y1="250.7" y2="250.7" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="254.7" font-size="11" text-anchor="end" fill="#6b6a66">4</text>
+<line x1="44" x2="704" y1="214.0" y2="214.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="36" y="218.0" font-size="11" text-anchor="end" fill="#6b6a66">6</text>
+<path fill="#eb6834" d="M197.0,324 V218.0 Q197.0,214.0 201.0,214.0 H217.0 Q221.0,214.0 221.0,218.0 V324 Z"/>
+<text x="209.0" y="209.0" font-size="11" text-anchor="middle" fill="#52514e">6</text>
+<text x="209.0" y="340" font-size="11" text-anchor="middle" fill="#6b6a66">28.09.</text>
+<path fill="#eb6834" d="M527.0,324 V291.3 Q527.0,287.3 531.0,287.3 H547.0 Q551.0,287.3 551.0,291.3 V324 Z"/>
+<text x="539.0" y="282.3" font-size="11" text-anchor="middle" fill="#52514e">2</text>
+<text x="539.0" y="340" font-size="11" text-anchor="middle" fill="#6b6a66">05.10.</text>
+</svg>

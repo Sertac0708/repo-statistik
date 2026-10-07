@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="348" viewBox="0 0 720 348" role="img" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'>
+<title>Klone und Aufrufe je Woche für Sertac0708/github-repo-pruefer</title>
+<text x="44" y="16" font-size="13" font-weight="600" fill="#ffffff">Klone je Woche</text>
+<line x1="44" x2="704" y1="146.0" y2="146.0" stroke="#3d434b" stroke-width="1"/>
+<text x="36" y="150.0" font-size="11" text-anchor="end" fill="#8f8e86">0</text>
+<line x1="44" x2="704" y1="118.5" y2="118.5" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="122.5" font-size="11" text-anchor="end" fill="#8f8e86">20</text>
+<line x1="44" x2="704" y1="91.0" y2="91.0" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="95.0" font-size="11" text-anchor="end" fill="#8f8e86">40</text>
+<line x1="44" x2="704" y1="63.5" y2="63.5" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="67.5" font-size="11" text-anchor="end" fill="#8f8e86">60</text>
+<line x1="44" x2="704" y1="36.0" y2="36.0" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="40.0" font-size="11" text-anchor="end" fill="#8f8e86">80</text>
+<path fill="#3987e5" d="M142.0,146 V45.5 Q142.0,41.5 146.0,41.5 H162.0 Q166.0,41.5 166.0,45.5 V146 Z"/>
+<text x="154.0" y="36.5" font-size="11" text-anchor="middle" fill="#c3c2b7">76</text>
+<text x="154.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">21.09.</text>
+<path fill="#3987e5" d="M362.0,146 V90.9 Q362.0,86.9 366.0,86.9 H382.0 Q386.0,86.9 386.0,90.9 V146 Z"/>
+<text x="374.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">28.09.</text>
+<path fill="#3987e5" d="M582.0,146 V140.4 Q582.0,136.4 586.0,136.4 H602.0 Q606.0,136.4 606.0,140.4 V146 Z"/>
+<text x="594.0" y="131.4" font-size="11" text-anchor="middle" fill="#c3c2b7">7</text>
+<text x="594.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
+<text x="44" y="194" font-size="13" font-weight="600" fill="#ffffff">Aufrufe je Woche</text>
+<line x1="44" x2="704" y1="324.0" y2="324.0" stroke="#3d434b" stroke-width="1"/>
+<text x="36" y="328.0" font-size="11" text-anchor="end" fill="#8f8e86">0</text>
+<line x1="44" x2="704" y1="269.0" y2="269.0" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="273.0" font-size="11" text-anchor="end" fill="#8f8e86">5</text>
+<line x1="44" x2="704" y1="214.0" y2="214.0" stroke="#2a2f36" stroke-width="1"/>
+<text x="36" y="218.0" font-size="11" text-anchor="end" fill="#8f8e86">10</text>
+<path fill="#d95926" d="M142.0,324 V218.0 Q142.0,214.0 146.0,214.0 H162.0 Q166.0,214.0 166.0,218.0 V324 Z"/>
+<text x="154.0" y="209.0" font-size="11" text-anchor="middle" fill="#c3c2b7">10</text>
+<text x="154.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">21.09.</text>
+<path fill="#d95926" d="M362.0,324 V229.0 Q362.0,225.0 366.0,225.0 H382.0 Q386.0,225.0 386.0,229.0 V324 Z"/>
+<text x="374.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">28.09.</text>
+<text x="594.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
+</svg>
