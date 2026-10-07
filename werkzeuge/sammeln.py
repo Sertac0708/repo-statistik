@@ -3,8 +3,10 @@
 
 GitHub zeigt Traffic (Aufrufe, Klone, Verweise) nur für die letzten 14 Tage. Dieses Werkzeug
 holt die Tageswerte, verschmilzt sie nach Datum mit dem Bestand in daten/<repo>.json und
-erzeugt daraus README.md und je Repo eine Wochengrafik (grafik/<repo>.svg, hell und dunkel)
-neu. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
+zeichnet je Repo eine Wochengrafik (grafik/<repo>.svg, hell und dunkel) und schreibt den
+Zahlenblock zwischen den Markern <!-- statistik:start --> und <!-- statistik:end --> in
+README.md (englisch) und README.de.md (deutsch) neu. Der übrige Text der READMEs bleibt
+unberührt. Läuft wöchentlich als GitHub Action, geht aber auch lokal:
 
     STATISTIK_TOKEN=$(gh auth token) python3 werkzeuge/sammeln.py
 
@@ -23,7 +25,9 @@ from pathlib import Path
 WURZEL = Path(__file__).resolve().parent.parent
 DATEN = WURZEL / "daten"
 REPOS_DATEI = WURZEL / "repos.txt"
-README = WURZEL / "README.md"
+READMES = ((WURZEL / "README.md", "en"), (WURZEL / "README.de.md", "de"))
+MARKER_START = "<!-- statistik:start -->"
+MARKER_ENDE = "<!-- statistik:end -->"
 GRAFIK = WURZEL / "grafik"
 API = "https://api.github.com"
 WOCHEN_IM_BERICHT = 8
@@ -254,44 +258,52 @@ def svg_schreiben(d: dict) -> None:
         datei.write_text("\n".join(teile) + "\n", encoding="utf-8")
 
 
-def readme_schreiben(alle: list[dict], jetzt: str) -> None:
-    zeilen = [
-        "# Repo-Statistik",
-        "",
-        "Zugriffszahlen der öffentlichen Repos, wöchentlich von `werkzeuge/sammeln.py` gesammelt,",
-        "mit Wochengrafik je Repo (Grafik und Tabelle zeigen dieselben Zahlen).",
-        "GitHub selbst behält Traffic nur 14 Tage, hier bleibt er. Diese Datei wird bei jedem Lauf",
-        "neu erzeugt, Änderungen von Hand gehen verloren.",
-        "",
-        f"Stand: {jetzt}",
-        "",
-        "Lesehilfe: *Klone* zählt jedes `git clone`, also auch Plugin-Installationen über einen",
-        "Claude-Code-Marktplatz, aber ebenso Bots und Spiegeldienste. *Eindeutig* ist nur innerhalb",
-        "der 14-Tage-Zahl von GitHub belastbar; Tageswerte lassen sich dafür nicht aufsummieren.",
-        "",
-    ]
+TEXTE = {
+    "de": {
+        "stand": "Stand: {jetzt}. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.",
+        "kopf": "Sterne {sterne} · Forks {forks} · Beobachter {beobachter} · offene Issues {issues}",
+        "vierzehn": "Letzte 14 Tage laut GitHub: {klone} Klone von {klone_e} Rechnern, {aufrufe} Aufrufe von {aufrufe_e} Besuchern",
+        "seit": "Seit Aufzeichnungsbeginn ({seit}): {klone} Klone, {aufrufe} Aufrufe",
+        "alt": "Klone und Aufrufe je Woche für {name}",
+        "tabelle": "| Woche ab | Klone | Aufrufe | Tage mit Daten |",
+        "verweise": "Verweise (eindeutige Besucher, 14 Tage): {quellen}",
+    },
+    "en": {
+        "stand": "As of {jetzt}. This block is written by the tool; manual edits will be overwritten.",
+        "kopf": "Stars {sterne} · Forks {forks} · Watchers {beobachter} · open issues {issues}",
+        "vierzehn": "Last 14 days per GitHub: {klone} clones from {klone_e} machines, {aufrufe} views from {aufrufe_e} visitors",
+        "seit": "Since recording began ({seit}): {klone} clones, {aufrufe} views",
+        "alt": "Clones and views per week for {name}",
+        "tabelle": "| Week of | Clones | Views | Days with data |",
+        "verweise": "Referrers (unique visitors, 14 days): {quellen}",
+    },
+}
+
+
+def block(alle: list[dict], jetzt: str, sprache: str) -> str:
+    """Der generierte Zahlenblock für eine README-Sprache."""
+    t = TEXTE[sprache]
+    zeilen = [t["stand"].format(jetzt=jetzt), ""]
     for d in alle:
         name = d["repo"].split("/", 1)[1]
         letzter = d["verlauf"][-1]
-        gesamt_aufrufe = sum(t.get("aufrufe", 0) for t in d["tage"].values())
-        gesamt_klone = sum(t.get("klone", 0) for t in d["tage"].values())
+        gesamt_aufrufe = sum(x.get("aufrufe", 0) for x in d["tage"].values())
+        gesamt_klone = sum(x.get("klone", 0) for x in d["tage"].values())
         zeilen += [
-            f"## {d['repo']}",
+            f"### {d['repo']}",
             "",
-            f"- Sterne {letzter['sterne']} · Forks {letzter['forks']} · Beobachter {letzter['beobachter']}"
-            f" · offene Issues {letzter['issues_offen']}",
-            f"- Letzte 14 Tage laut GitHub: {letzter['klone_14t']} Klone von"
-            f" {letzter['klone_eindeutig_14t']} Rechnern, {letzter['aufrufe_14t']} Aufrufe von"
-            f" {letzter['aufrufe_eindeutig_14t']} Besuchern",
-            f"- Seit Aufzeichnungsbeginn ({d['aufzeichnung_seit']}): {gesamt_klone} Klone,"
-            f" {gesamt_aufrufe} Aufrufe",
+            "- " + t["kopf"].format(sterne=letzter["sterne"], forks=letzter["forks"],
+                                   beobachter=letzter["beobachter"], issues=letzter["issues_offen"]),
+            "- " + t["vierzehn"].format(klone=letzter["klone_14t"], klone_e=letzter["klone_eindeutig_14t"],
+                                       aufrufe=letzter["aufrufe_14t"], aufrufe_e=letzter["aufrufe_eindeutig_14t"]),
+            "- " + t["seit"].format(seit=d["aufzeichnung_seit"], klone=gesamt_klone, aufrufe=gesamt_aufrufe),
             "",
             "<picture>",
             f'  <source media="(prefers-color-scheme: dark)" srcset="grafik/{name}-dunkel.svg">',
-            f'  <img alt="Klone und Aufrufe je Woche für {name}" src="grafik/{name}.svg" width="720">',
+            f'  <img alt="{t["alt"].format(name=name)}" src="grafik/{name}.svg" width="720">',
             "</picture>",
             "",
-            "| Woche ab | Klone | Aufrufe | Tage mit Daten |",
+            t["tabelle"],
             "|---|---:|---:|---:|",
         ]
         for w in wochen(d)[:WOCHEN_IM_BERICHT]:
@@ -299,9 +311,26 @@ def readme_schreiben(alle: list[dict], jetzt: str) -> None:
         verweise = d["verweise"].get(letzter["datum"], [])
         if verweise:
             quellen = ", ".join(f"{v['quelle']} ({v['eindeutig']})" for v in verweise)
-            zeilen += ["", f"Verweise (eindeutige Besucher, 14 Tage): {quellen}"]
+            zeilen += ["", t["verweise"].format(quellen=quellen)]
         zeilen.append("")
-    README.write_text("\n".join(zeilen), encoding="utf-8")
+    return "\n".join(zeilen).rstrip() + "\n"
+
+
+def readmes_schreiben(alle: list[dict], jetzt: str) -> None:
+    """Ersetzt in jeder README nur den Text zwischen den Markern. Fehlt eine Datei oder ein Marker,
+    wird sie übersprungen und gemeldet; der Lauf schlägt deshalb nicht fehl."""
+    for datei, sprache in READMES:
+        if not datei.exists():
+            print(f"Hinweis: {datei.name} fehlt, Zahlenblock nicht geschrieben.")
+            continue
+        text = datei.read_text(encoding="utf-8")
+        a, e = text.find(MARKER_START), text.find(MARKER_ENDE)
+        if a < 0 or e < 0 or e < a:
+            print(f"Hinweis: Marker in {datei.name} fehlen, Zahlenblock nicht geschrieben.")
+            continue
+        neu = text[: a + len(MARKER_START)] + "\n" + block(alle, jetzt, sprache) + text[e:]
+        if neu != text:
+            datei.write_text(neu, encoding="utf-8")
 
 
 def main() -> int:
@@ -331,7 +360,7 @@ def main() -> int:
         )
         alle.append(d)
     if alle:
-        readme_schreiben(alle, jetzt)
+        readmes_schreiben(alle, jetzt)
     return 1 if fehler else 0
 
 

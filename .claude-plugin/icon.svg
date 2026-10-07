@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Repo-Statistik</title>
+  <rect width="256" height="256" rx="56" fill="#0f172a"/>
+  <line x1="52" y1="196" x2="212" y2="196" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+  <rect x="64" y="128" width="28" height="60" rx="6" fill="#2a78d6"/>
+  <rect x="108" y="84" width="28" height="104" rx="6" fill="#2a78d6"/>
+  <rect x="152" y="104" width="28" height="84" rx="6" fill="#eb6834"/>
+  <path d="M70 108 L122 60 L166 80 L206 44" fill="none" stroke="#f8fafc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="206" cy="44" r="10" fill="#f8fafc"/>
+</svg>

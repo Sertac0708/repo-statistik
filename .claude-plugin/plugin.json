@@ -1,0 +1,25 @@
+{
+  "name": "repo-statistik",
+  "version": "1.0.0",
+  "description": "Keeps the view and clone statistics of your GitHub repos permanently (GitHub itself shows only 14 days): a weekly GitHub Action stores the numbers in your own repo as a table and chart. Lets you see whether your tools get used without building a heartbeat or telemetry into them. The skill sets it up for your repos and reads the numbers back to you on request. German and English. Made by NetBoosting (https://netboosting.de).",
+  "author": {
+    "name": "Sertac",
+    "url": "https://github.com/Sertac0708"
+  },
+  "homepage": "https://github.com/Sertac0708/repo-statistik",
+  "repository": "https://github.com/Sertac0708/repo-statistik",
+  "documentationUrl": "https://github.com/Sertac0708/repo-statistik#readme",
+  "supportUrl": "https://github.com/Sertac0708/repo-statistik/issues",
+  "privacyPolicyUrl": "https://github.com/Sertac0708/repo-statistik/blob/main/PRIVACY.md",
+  "license": "MIT",
+  "keywords": [
+    "github",
+    "traffic",
+    "statistics",
+    "clones",
+    "analytics",
+    "github-actions",
+    "open-source",
+    "telemetry-free"
+  ]
+}
