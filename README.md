@@ -4,7 +4,7 @@ Zugriffszahlen der öffentlichen Repos, wöchentlich von `werkzeuge/sammeln.py` 
 GitHub selbst behält Traffic nur 14 Tage, hier bleibt er. Diese Datei wird bei jedem Lauf
 neu erzeugt, Änderungen von Hand gehen verloren.
 
-Stand: 2026-10-07 10:43 UTC
+Stand: 2026-10-07 10:54 UTC
 
 Lesehilfe: *Klone* zählt jedes `git clone`, also auch Plugin-Installationen über einen
 Claude-Code-Marktplatz, aber ebenso Bots und Spiegeldienste. *Eindeutig* ist nur innerhalb
