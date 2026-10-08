@@ -55,8 +55,16 @@ CREATE TABLE IF NOT EXISTS openseo_ping (
   empfangen TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS openseo_woche ON openseo_ping(woche);
--- Höchstens eine Zeile je Installation, Woche und Ereignis: Wiederholungen
--- überschreiben die Zeile, statt die Tabelle wachsen zu lassen.
+"""
+
+# Höchstens eine Zeile je Installation, Woche und Ereignis: Wiederholungen
+# überschreiben die Zeile, statt die Tabelle wachsen zu lassen. Läuft einmal
+# beim Start (einrichten), nicht bei jeder Verbindung: ältere Doppelzeilen
+# werden vorher entfernt, sonst schlüge das Anlegen des Index fehl.
+EINDEUTIG = """
+DELETE FROM openseo_ping WHERE id NOT IN (
+  SELECT MAX(id) FROM openseo_ping GROUP BY install_id, woche, event
+);
 CREATE UNIQUE INDEX IF NOT EXISTS openseo_eins_je_woche ON openseo_ping(install_id, woche, event);
 """
 
@@ -66,6 +74,11 @@ def verbindung() -> sqlite3.Connection:
     v = sqlite3.connect(DATENBANK, timeout=10)
     v.executescript(SCHEMA)
     return v
+
+
+def einrichten() -> None:
+    with SCHREIBSPERRE, verbindung() as v:
+        v.executescript(EINDEUTIG)
 
 
 def iso_woche(zeit: datetime) -> str:
@@ -351,6 +364,6 @@ Handler.openseo_ping = _openseo_ping
 
 
 if __name__ == "__main__":
-    verbindung().close()
+    einrichten()
     print(f"Heartbeat-Empfaenger auf Port {PORT}, Datenbank {DATENBANK}")
     ThreadingHTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
