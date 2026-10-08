@@ -20,6 +20,7 @@ import os
 import re
 import sqlite3
 import threading
+import time
 from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -54,6 +55,9 @@ CREATE TABLE IF NOT EXISTS openseo_ping (
   empfangen TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS openseo_woche ON openseo_ping(woche);
+-- Höchstens eine Zeile je Installation, Woche und Ereignis: Wiederholungen
+-- überschreiben die Zeile, statt die Tabelle wachsen zu lassen.
+CREATE UNIQUE INDEX IF NOT EXISTS openseo_eins_je_woche ON openseo_ping(install_id, woche, event);
 """
 
 
@@ -101,7 +105,29 @@ OPENSEO_ZAHLEN = ("userCount", "projectCount", "siteAuditCount", "rankTrackingKe
                   "savedKeywordCount", "mcpToolCalls", "minutesSinceInstall")
 OPENSEO_SCHALTER = ("gscConnected", "samChatUsed", "firstRun")
 OPENSEO_AUSWAHL = {"deployTarget": {"cloudflare", "docker"}, "dbBackend": {"d1", "postgres"}}
-OPENSEO_PRUEFUNG = re.compile(r"^[a-z0-9_-]{1,40}(:[a-z]{2,10})?$")
+# Prüfnamen kommen als "dataforseo:error" (Heartbeat) oder "AUTH_MODE" (Startprüfung).
+OPENSEO_PRUEFUNG = re.compile(r"^[A-Za-z0-9_-]{1,40}(:[a-z]{2,10})?$")
+# Schutz gegen Fluten: Anfragen je Absender-Adresse und Zeitfenster. Die Adresse
+# lebt nur im Arbeitsspeicher und wird weder gespeichert noch protokolliert.
+OPENSEO_LIMIT, OPENSEO_FENSTER = 30, 600
+OPENSEO_MAX_STARTFEHLER_JE_WOCHE = 10_000
+_anfragen: dict[str, list[float]] = {}
+_anfragen_sperre = threading.Lock()
+
+
+def openseo_erlaubt(absender: str, jetzt: float | None = None) -> bool:
+    jetzt = time.monotonic() if jetzt is None else jetzt
+    with _anfragen_sperre:
+        if len(_anfragen) > 10_000:  # Speicher begrenzen: alte Einträge aufräumen
+            for k in [k for k, v in _anfragen.items() if not v or jetzt - v[-1] > OPENSEO_FENSTER]:
+                del _anfragen[k]
+        zeiten = [t for t in _anfragen.get(absender, []) if jetzt - t < OPENSEO_FENSTER]
+        if len(zeiten) >= OPENSEO_LIMIT:
+            _anfragen[absender] = zeiten
+            return False
+        zeiten.append(jetzt)
+        _anfragen[absender] = zeiten
+        return True
 
 
 def openseo_bereinigen(props: dict) -> dict:
@@ -114,7 +140,7 @@ def openseo_bereinigen(props: dict) -> dict:
         if isinstance(props.get(k), bool):
             sauber[k] = props[k]
     for k, erlaubt in OPENSEO_AUSWAHL.items():
-        if props.get(k) in erlaubt:
+        if isinstance(props.get(k), str) and props[k] in erlaubt:
             sauber[k] = props[k]
     if isinstance(props.get("prevVersion"), str) and OPENSEO_VERSION.match(props["prevVersion"]):
         sauber["prevVersion"] = props["prevVersion"]
@@ -123,6 +149,19 @@ def openseo_bereinigen(props: dict) -> dict:
         if isinstance(liste, list):
             sauber[k] = [x for x in liste[:20] if isinstance(x, str) and OPENSEO_PRUEFUNG.match(x)]
     return sauber
+
+
+_zahlen_cache: dict = {"bis": 0.0, "wert": None}
+_zahlen_sperre = threading.Lock()
+
+
+def openseo_zahlen_gepuffert(sekunden: int = 120) -> dict:
+    """Zahlenseite und Abzeichen rechnen höchstens alle zwei Minuten neu."""
+    with _zahlen_sperre:
+        if _zahlen_cache["wert"] is None or time.monotonic() >= _zahlen_cache["bis"]:
+            _zahlen_cache["wert"] = openseo_zahlen()
+            _zahlen_cache["bis"] = time.monotonic() + sekunden
+        return _zahlen_cache["wert"]
 
 
 def openseo_zahlen() -> dict:
@@ -178,6 +217,9 @@ def badge(wert: int, lang: str = "de", label: str | None = None) -> bytes:
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "repo-statistik-heartbeat"
+    # Verbindungen, die einen Body ankündigen und dann nichts schicken, nach
+    # 10 Sekunden schließen, statt einen Thread dauerhaft zu blockieren.
+    timeout = 10
 
     def log_message(self, format, *args):  # noqa: A002 — Signatur der Basisklasse
         # Standard würde die Client-Adresse mitschreiben. Hier nur Methode, Pfad, Status.
@@ -203,11 +245,11 @@ class Handler(BaseHTTPRequestHandler):
         elif pfad == "/zahlen":
             self.antwort(200, json.dumps(zahlen(), ensure_ascii=False, indent=2).encode("utf-8"), cache=300)
         elif pfad == "/zahlen/openseo":
-            self.antwort(200, json.dumps(openseo_zahlen(), ensure_ascii=False, indent=2).encode("utf-8"), cache=300)
+            self.antwort(200, json.dumps(openseo_zahlen_gepuffert(), ensure_ascii=False, indent=2).encode("utf-8"), cache=300)
         elif pfad == "/badge/openseo.svg":
             en = "lang=en" in self.path
             label = "active OpenSEO installs this week" if en else "aktive OpenSEO-Installationen diese Woche"
-            self.antwort(200, badge(openseo_zahlen()["aktive_installationen_diese_woche"], label=label),
+            self.antwort(200, badge(openseo_zahlen_gepuffert()["aktive_installationen_diese_woche"], label=label),
                          "image/svg+xml; charset=utf-8", cache=300)
         elif pfad == "/badge.svg":
             lang = "en" if "lang=en" in self.path else "de"
@@ -256,7 +298,17 @@ class Handler(BaseHTTPRequestHandler):
         self.antwort(200, b'{"ok": true}')
 
 
+def _absender(handler) -> str:
+    # Railways Proxy hängt die echte Client-Adresse hinten an X-Forwarded-For an.
+    # Den letzten Eintrag nehmen: die vorderen kann der Absender selbst fälschen.
+    weitergeleitet = handler.headers.get("X-Forwarded-For", "")
+    return weitergeleitet.split(",")[-1].strip() or handler.client_address[0]
+
+
 def _openseo_ping(self):
+    if not openseo_erlaubt(_absender(self)):
+        self.antwort(429, b'{"fehler": "zu viele Anfragen"}')
+        return
     try:
         laenge = int(self.headers.get("Content-Length", "0"))
     except ValueError:
@@ -271,16 +323,25 @@ def _openseo_ping(self):
         if event not in OPENSEO_EVENTS or not OPENSEO_ID.match(install_id) or not OPENSEO_VERSION.match(version) \
                 or not isinstance(props, dict):
             raise ValueError("ungueltig")
+        sauber = openseo_bereinigen(props)
     except Exception:  # noqa: BLE001
         self.antwort(400, b'{"fehler": "ungueltiger Ping"}')
         return
-    sauber = openseo_bereinigen(props)
     jetzt = datetime.now(timezone.utc)
+    woche = iso_woche(jetzt)
     with SCHREIBSPERRE, verbindung() as v:
+        if event == "self_host.preflight_failed" and v.execute(
+                "SELECT COUNT(*) FROM openseo_ping WHERE woche = ? AND event = ?", (woche, event),
+        ).fetchone()[0] >= OPENSEO_MAX_STARTFEHLER_JE_WOCHE:
+            self.antwort(200, b'{"ok": true}')  # Obergrenze erreicht: annehmen, nicht speichern
+            return
         v.execute(
             "INSERT INTO openseo_ping (install_id, woche, event, version, deploy_target, db_backend, props, empfangen) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (install_id, iso_woche(jetzt), event, version, sauber.get("deployTarget"), sauber.get("dbBackend"),
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?) "
+            "ON CONFLICT(install_id, woche, event) DO UPDATE SET version = excluded.version, "
+            "deploy_target = excluded.deploy_target, db_backend = excluded.db_backend, "
+            "props = excluded.props, empfangen = excluded.empfangen",
+            (install_id, woche, event, version, sauber.get("deployTarget"), sauber.get("dbBackend"),
              json.dumps(sauber, ensure_ascii=False), jetzt.strftime("%Y-%m-%dT%H:%M:%SZ")),
         )
     self.antwort(200, b'{"ok": true}')
