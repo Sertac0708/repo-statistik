@@ -3,7 +3,7 @@
 
 Endpunkte:
   POST /ping       nimmt {"install_id": <uuid4>, "version": "x.y.z", "repos": <int>, "ok": <bool>} an
-  POST /ping/openseo  Heartbeat des OpenSEO-Forks (Sertac0708/open-seo), nur Felder einer festen Liste
+  POST /ping/openseo  Heartbeat des OpenSEO-Forks (Sertac0708/open-seo-de), nur Felder einer festen Liste
   GET  /zahlen/openseo  aggregierte Zahlen des OpenSEO-Forks
   GET  /badge/openseo.svg  Abzeichen „aktive OpenSEO-Installationen diese Woche"
   GET  /zahlen     aggregierte Zahlen als JSON (aktive Installationen diese/letzte Woche, gesamt, Versionen)
