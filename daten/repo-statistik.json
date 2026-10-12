@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/repo-statistik",
   "aufzeichnung_seit": "2026-10-07",
-  "aktualisiert": "2026-10-07 11:50 UTC",
+  "aktualisiert": "2026-10-12 13:58 UTC",
   "tage": {
     "2026-09-24": {
       "aufrufe": 0,
@@ -82,10 +82,34 @@
       "klone_eindeutig": 0
     },
     "2026-10-07": {
+      "aufrufe": 7,
+      "aufrufe_eindeutig": 1,
+      "klone": 90,
+      "klone_eindeutig": 46
+    },
+    "2026-10-08": {
+      "aufrufe": 1,
+      "aufrufe_eindeutig": 1,
+      "klone": 23,
+      "klone_eindeutig": 15
+    },
+    "2026-10-09": {
+      "aufrufe": 2,
+      "aufrufe_eindeutig": 1,
+      "klone": 5,
+      "klone_eindeutig": 3
+    },
+    "2026-10-10": {
       "aufrufe": 0,
       "aufrufe_eindeutig": 0,
-      "klone": 0,
-      "klone_eindeutig": 0
+      "klone": 16,
+      "klone_eindeutig": 9
+    },
+    "2026-10-11": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 2,
+      "klone_eindeutig": 2
     }
   },
   "verlauf": [
@@ -99,13 +123,58 @@
       "aufrufe_eindeutig_14t": 0,
       "klone_14t": 0,
       "klone_eindeutig_14t": 0
+    },
+    {
+      "datum": "2026-10-12",
+      "sterne": 0,
+      "forks": 0,
+      "beobachter": 0,
+      "issues_offen": 0,
+      "aufrufe_14t": 10,
+      "aufrufe_eindeutig_14t": 2,
+      "klone_14t": 136,
+      "klone_eindeutig_14t": 73
     }
   ],
   "verweise": {
-    "2026-10-07": []
+    "2026-10-07": [],
+    "2026-10-12": [
+      {
+        "quelle": "github.com",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ]
   },
   "pfade": {
-    "2026-10-07": []
+    "2026-10-07": [],
+    "2026-10-12": [
+      {
+        "pfad": "/Sertac0708/repo-statistik",
+        "aufrufe": 6,
+        "eindeutig": 2
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commit/6b4868087f5b2bbc509cacd06b53a614ea7de5b3",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commit/da532310a86b0d8e05a9808e4bd35f1e2fe885c5",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commits",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/deployments/repo-statistik / production",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ]
   },
   "erstellt": "2026-10-07"
 }

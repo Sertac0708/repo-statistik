@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/feature-scout",
   "aufzeichnung_seit": "2026-09-28",
-  "aktualisiert": "2026-10-07 11:50 UTC",
+  "aktualisiert": "2026-10-12 13:58 UTC",
   "tage": {
     "2026-09-23": {
       "aufrufe": 0,
@@ -86,6 +86,36 @@
       "aufrufe_eindeutig": 1,
       "klone": 2,
       "klone_eindeutig": 2
+    },
+    "2026-10-07": {
+      "aufrufe": 4,
+      "aufrufe_eindeutig": 3,
+      "klone": 15,
+      "klone_eindeutig": 12
+    },
+    "2026-10-08": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 24,
+      "klone_eindeutig": 24
+    },
+    "2026-10-09": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 27,
+      "klone_eindeutig": 27
+    },
+    "2026-10-10": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 24,
+      "klone_eindeutig": 24
+    },
+    "2026-10-11": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 25,
+      "klone_eindeutig": 25
     }
   },
   "verlauf": [
@@ -99,6 +129,17 @@
       "aufrufe_eindeutig_14t": 6,
       "klone_14t": 115,
       "klone_eindeutig_14t": 75
+    },
+    {
+      "datum": "2026-10-12",
+      "sterne": 2,
+      "forks": 0,
+      "beobachter": 1,
+      "issues_offen": 0,
+      "aufrufe_14t": 12,
+      "aufrufe_eindeutig_14t": 8,
+      "klone_14t": 230,
+      "klone_eindeutig_14t": 187
     }
   ],
   "verweise": {
@@ -107,6 +148,13 @@
         "quelle": "github.com",
         "aufrufe": 1,
         "eindeutig": 1
+      }
+    ],
+    "2026-10-12": [
+      {
+        "quelle": "github.com",
+        "aufrufe": 3,
+        "eindeutig": 3
       }
     ]
   },
@@ -124,6 +172,28 @@
       },
       {
         "pfad": "/Sertac0708/feature-scout/fork",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ],
+    "2026-10-12": [
+      {
+        "pfad": "/Sertac0708/feature-scout",
+        "aufrufe": 8,
+        "eindeutig": 6
+      },
+      {
+        "pfad": "/Sertac0708/feature-scout/blob/main/README.de.md",
+        "aufrufe": 2,
+        "eindeutig": 2
+      },
+      {
+        "pfad": "/Sertac0708/feature-scout/fork",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/feature-scout/issues",
         "aufrufe": 1,
         "eindeutig": 1
       }
