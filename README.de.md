@@ -22,13 +22,13 @@ Dieses Repo ist Anleitung und Ergebnis zugleich. Der Block unten wird jeden Mont
 Werkzeug neu geschrieben, mit den Zahlen unserer öffentlichen Repos.
 
 <!-- statistik:start -->
-Stand: 2026-10-12 13:58 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
+Stand: 2026-10-16 08:39 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
 
 ### Sertac0708/feature-scout
 
 - Sterne 2 · Forks 0 · Beobachter 1 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 230 Klone von 187 Rechnern, 12 Aufrufe von 8 Besuchern
-- Seit Aufzeichnungsbeginn (2026-09-28): 230 Klone, 12 Aufrufe
+- Letzte 14 Tage laut GitHub: 262 Klone von 245 Rechnern, 10 Aufrufe von 7 Besuchern
+- Seit Aufzeichnungsbeginn (2026-09-28): 329 Klone, 12 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/feature-scout-dunkel.svg">
@@ -37,6 +37,7 @@ Stand: 2026-10-12 13:58 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-10-12 | 99 | 0 | 4 |
 | 2026-10-05 | 117 | 6 | 7 |
 | 2026-09-28 | 113 | 6 | 7 |
 
@@ -45,8 +46,8 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (3)
 ### Sertac0708/siteground-deploy
 
 - Sterne 0 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 59 Klone von 44 Rechnern, 0 Aufrufe von 0 Besuchern
-- Seit Aufzeichnungsbeginn (2026-10-02): 59 Klone, 0 Aufrufe
+- Letzte 14 Tage laut GitHub: 63 Klone von 48 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-10-02): 63 Klone, 0 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/siteground-deploy-dunkel.svg">
@@ -55,14 +56,15 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (3)
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-10-12 | 4 | 0 | 4 |
 | 2026-10-05 | 10 | 0 | 7 |
 | 2026-09-28 | 49 | 0 | 7 |
 
 ### Sertac0708/github-repo-pruefer
 
 - Sterne 1 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 189 Klone von 168 Rechnern, 12 Aufrufe von 3 Besuchern
-- Seit Aufzeichnungsbeginn (2026-09-27): 265 Klone, 22 Aufrufe
+- Letzte 14 Tage laut GitHub: 298 Klone von 261 Rechnern, 14 Aufrufe von 4 Besuchern
+- Seit Aufzeichnungsbeginn (2026-09-27): 406 Klone, 25 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/github-repo-pruefer-dunkel.svg">
@@ -71,6 +73,7 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (3)
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-10-12 | 141 | 3 | 4 |
 | 2026-10-05 | 146 | 3 | 7 |
 | 2026-09-28 | 43 | 9 | 7 |
 | 2026-09-21 | 76 | 10 | 5 |
@@ -80,8 +83,8 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (1)
 ### Sertac0708/repo-statistik
 
 - Sterne 0 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 136 Klone von 73 Rechnern, 10 Aufrufe von 2 Besuchern
-- Seit Aufzeichnungsbeginn (2026-10-07): 136 Klone, 10 Aufrufe
+- Letzte 14 Tage laut GitHub: 147 Klone von 79 Rechnern, 13 Aufrufe von 2 Besuchern
+- Seit Aufzeichnungsbeginn (2026-10-07): 147 Klone, 13 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
@@ -90,6 +93,7 @@ Verweise (eindeutige Besucher, 14 Tage): github.com (1)
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-10-12 | 11 | 3 | 3 |
 | 2026-10-05 | 136 | 10 | 7 |
 
 Verweise (eindeutige Besucher, 14 Tage): github.com (1)
