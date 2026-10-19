@@ -22,13 +22,13 @@ This repo is the guide and the result at the same time. The block below is rewri
 tool every Monday with the numbers of our public repos.
 
 <!-- statistik:start -->
-As of 2026-10-16 08:39 UTC. This block is written by the tool; manual edits will be overwritten.
+As of 2026-10-19 11:39 UTC. This block is written by the tool; manual edits will be overwritten.
 
 ### Sertac0708/feature-scout
 
 - Stars 2 · Forks 0 · Watchers 1 · open issues 0
-- Last 14 days per GitHub: 262 clones from 245 machines, 10 views from 7 visitors
-- Since recording began (2026-09-28): 329 clones, 12 views
+- Last 14 days per GitHub: 297 clones from 292 machines, 6 views from 3 visitors
+- Since recording began (2026-09-28): 410 clones, 12 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/feature-scout-dunkel.svg">
@@ -37,7 +37,7 @@ As of 2026-10-16 08:39 UTC. This block is written by the tool; manual edits will
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
-| 2026-10-12 | 99 | 0 | 4 |
+| 2026-10-12 | 180 | 0 | 7 |
 | 2026-10-05 | 117 | 6 | 7 |
 | 2026-09-28 | 113 | 6 | 7 |
 
@@ -46,8 +46,8 @@ Referrers (unique visitors, 14 days): github.com (3)
 ### Sertac0708/siteground-deploy
 
 - Stars 0 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 63 clones from 48 machines, 0 views from 0 visitors
-- Since recording began (2026-10-02): 63 clones, 0 views
+- Last 14 days per GitHub: 18 clones from 13 machines, 0 views from 0 visitors
+- Since recording began (2026-10-02): 67 clones, 0 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/siteground-deploy-dunkel.svg">
@@ -56,15 +56,15 @@ Referrers (unique visitors, 14 days): github.com (3)
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
-| 2026-10-12 | 4 | 0 | 4 |
+| 2026-10-12 | 8 | 0 | 7 |
 | 2026-10-05 | 10 | 0 | 7 |
 | 2026-09-28 | 49 | 0 | 7 |
 
 ### Sertac0708/github-repo-pruefer
 
 - Stars 1 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 298 clones from 261 machines, 14 views from 4 visitors
-- Since recording began (2026-09-27): 406 clones, 25 views
+- Last 14 days per GitHub: 376 clones from 334 machines, 6 views from 2 visitors
+- Since recording began (2026-09-27): 495 clones, 25 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/github-repo-pruefer-dunkel.svg">
@@ -73,7 +73,7 @@ Referrers (unique visitors, 14 days): github.com (3)
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
-| 2026-10-12 | 141 | 3 | 4 |
+| 2026-10-12 | 230 | 3 | 7 |
 | 2026-10-05 | 146 | 3 | 7 |
 | 2026-09-28 | 43 | 9 | 7 |
 | 2026-09-21 | 76 | 10 | 5 |
@@ -83,8 +83,8 @@ Referrers (unique visitors, 14 days): github.com (1)
 ### Sertac0708/repo-statistik
 
 - Stars 0 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 147 clones from 79 machines, 13 views from 2 visitors
-- Since recording began (2026-10-07): 147 clones, 13 views
+- Last 14 days per GitHub: 160 clones from 87 machines, 13 views from 2 visitors
+- Since recording began (2026-10-07): 160 clones, 13 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
@@ -93,7 +93,7 @@ Referrers (unique visitors, 14 days): github.com (1)
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
-| 2026-10-12 | 11 | 3 | 3 |
+| 2026-10-12 | 24 | 3 | 7 |
 | 2026-10-05 | 136 | 10 | 7 |
 
 Referrers (unique visitors, 14 days): github.com (1)

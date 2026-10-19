@@ -14,8 +14,8 @@
 <text x="154.0" y="162" font-size="11" text-anchor="middle" fill="#6b6a66">28.09.</text>
 <path fill="#2a78d6" d="M362.0,146 V131.7 Q362.0,127.7 366.0,127.7 H382.0 Q386.0,127.7 386.0,131.7 V146 Z"/>
 <text x="374.0" y="162" font-size="11" text-anchor="middle" fill="#6b6a66">05.10.</text>
-<path fill="#2a78d6" d="M582.0,146 V142.7 Q582.0,138.7 586.0,138.7 H602.0 Q606.0,138.7 606.0,142.7 V146 Z"/>
-<text x="594.0" y="133.7" font-size="11" text-anchor="middle" fill="#52514e">4</text>
+<path fill="#2a78d6" d="M582.0,146 V135.3 Q582.0,131.3 586.0,131.3 H602.0 Q606.0,131.3 606.0,135.3 V146 Z"/>
+<text x="594.0" y="126.3" font-size="11" text-anchor="middle" fill="#52514e">8</text>
 <text x="594.0" y="162" font-size="11" text-anchor="middle" fill="#6b6a66">12.10.</text>
 <text x="44" y="194" font-size="13" font-weight="600" fill="#0b0b0b">Aufrufe je Woche</text>
 <line x1="44" x2="704" y1="324.0" y2="324.0" stroke="#c9c8c3" stroke-width="1"/>

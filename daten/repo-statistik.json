@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/repo-statistik",
   "aufzeichnung_seit": "2026-10-07",
-  "aktualisiert": "2026-10-16 08:39 UTC",
+  "aktualisiert": "2026-10-19 11:39 UTC",
   "tage": {
     "2026-09-24": {
       "aufrufe": 0,
@@ -128,6 +128,30 @@
       "aufrufe_eindeutig": 0,
       "klone": 0,
       "klone_eindeutig": 0
+    },
+    "2026-10-15": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 2,
+      "klone_eindeutig": 2
+    },
+    "2026-10-16": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 6,
+      "klone_eindeutig": 4
+    },
+    "2026-10-17": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-10-18": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 4,
+      "klone_eindeutig": 4
     }
   },
   "verlauf": [
@@ -163,6 +187,17 @@
       "aufrufe_eindeutig_14t": 2,
       "klone_14t": 147,
       "klone_eindeutig_14t": 79
+    },
+    {
+      "datum": "2026-10-19",
+      "sterne": 0,
+      "forks": 0,
+      "beobachter": 0,
+      "issues_offen": 0,
+      "aufrufe_14t": 13,
+      "aufrufe_eindeutig_14t": 2,
+      "klone_14t": 160,
+      "klone_eindeutig_14t": 87
     }
   ],
   "verweise": {
@@ -175,6 +210,13 @@
       }
     ],
     "2026-10-16": [
+      {
+        "quelle": "github.com",
+        "aufrufe": 2,
+        "eindeutig": 1
+      }
+    ],
+    "2026-10-19": [
       {
         "quelle": "github.com",
         "aufrufe": 2,
@@ -212,6 +254,43 @@
       }
     ],
     "2026-10-16": [
+      {
+        "pfad": "/Sertac0708/repo-statistik",
+        "aufrufe": 7,
+        "eindeutig": 2
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commit/6b4868087f5b2bbc509cacd06b53a614ea7de5b3",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commit/7ada15239655f9627f22f61a8d7a0b4a149fd689",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commit/da532310a86b0d8e05a9808e4bd35f1e2fe885c5",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/commits",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/deployments/repo-statistik / production",
+        "aufrufe": 1,
+        "eindeutig": 1
+      },
+      {
+        "pfad": "/Sertac0708/repo-statistik/tree/main/heartbeat",
+        "aufrufe": 1,
+        "eindeutig": 1
+      }
+    ],
+    "2026-10-19": [
       {
         "pfad": "/Sertac0708/repo-statistik",
         "aufrufe": 7,
