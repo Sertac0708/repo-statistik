@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/repo-statistik",
   "aufzeichnung_seit": "2026-10-07",
-  "aktualisiert": "2026-11-02 14:18 UTC",
+  "aktualisiert": "2026-11-09 14:46 UTC",
   "tage": {
     "2026-09-24": {
       "aufrufe": 0,
@@ -236,6 +236,48 @@
       "aufrufe_eindeutig": 0,
       "klone": 3,
       "klone_eindeutig": 1
+    },
+    "2026-11-02": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 7,
+      "klone_eindeutig": 5
+    },
+    "2026-11-03": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-11-04": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 15,
+      "klone_eindeutig": 8
+    },
+    "2026-11-05": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-06": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-11-07": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-11-08": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
     }
   },
   "verlauf": [
@@ -304,6 +346,17 @@
       "aufrufe_eindeutig_14t": 0,
       "klone_14t": 45,
       "klone_eindeutig_14t": 24
+    },
+    {
+      "datum": "2026-11-09",
+      "sterne": 0,
+      "forks": 0,
+      "beobachter": 0,
+      "issues_offen": 0,
+      "aufrufe_14t": 0,
+      "aufrufe_eindeutig_14t": 0,
+      "klone_14t": 51,
+      "klone_eindeutig_14t": 28
     }
   ],
   "verweise": {
@@ -336,7 +389,8 @@
         "eindeutig": 1
       }
     ],
-    "2026-11-02": []
+    "2026-11-02": [],
+    "2026-11-09": []
   },
   "pfade": {
     "2026-10-07": [],
@@ -458,7 +512,8 @@
         "eindeutig": 1
       }
     ],
-    "2026-11-02": []
+    "2026-11-02": [],
+    "2026-11-09": []
   },
   "erstellt": "2026-10-07"
 }
