@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/github-repo-pruefer",
   "aufzeichnung_seit": "2026-09-27",
-  "aktualisiert": "2026-11-09 14:46 UTC",
+  "aktualisiert": "2026-11-16 14:21 UTC",
   "tage": {
     "2026-09-23": {
       "aufrufe": 0,
@@ -284,6 +284,42 @@
       "aufrufe_eindeutig": 0,
       "klone": 25,
       "klone_eindeutig": 25
+    },
+    "2026-11-09": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 26,
+      "klone_eindeutig": 26
+    },
+    "2026-11-10": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 26,
+      "klone_eindeutig": 25
+    },
+    "2026-11-11": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 26,
+      "klone_eindeutig": 26
+    },
+    "2026-11-12": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 27,
+      "klone_eindeutig": 27
+    },
+    "2026-11-13": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 29,
+      "klone_eindeutig": 29
+    },
+    "2026-11-14": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 17,
+      "klone_eindeutig": 17
     }
   },
   "verlauf": [
@@ -363,6 +399,17 @@
       "aufrufe_eindeutig_14t": 0,
       "klone_14t": 403,
       "klone_eindeutig_14t": 379
+    },
+    {
+      "datum": "2026-11-16",
+      "sterne": 1,
+      "forks": 0,
+      "beobachter": 0,
+      "issues_offen": 0,
+      "aufrufe_14t": 0,
+      "aufrufe_eindeutig_14t": 0,
+      "klone_14t": 384,
+      "klone_eindeutig_14t": 363
     }
   ],
   "verweise": {
@@ -402,7 +449,8 @@
       }
     ],
     "2026-11-02": [],
-    "2026-11-09": []
+    "2026-11-09": [],
+    "2026-11-16": []
   },
   "pfade": {
     "2026-10-07": [
@@ -517,7 +565,8 @@
         "eindeutig": 1
       }
     ],
-    "2026-11-09": []
+    "2026-11-09": [],
+    "2026-11-16": []
   },
   "erstellt": "2026-09-27"
 }

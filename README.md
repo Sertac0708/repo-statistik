@@ -22,13 +22,13 @@ This repo is the guide and the result at the same time. The block below is rewri
 tool every Monday with the numbers of our public repos.
 
 <!-- statistik:start -->
-As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will be overwritten.
+As of 2026-11-16 14:21 UTC. This block is written by the tool; manual edits will be overwritten.
 
 ### Sertac0708/feature-scout
 
 - Stars 2 · Forks 0 · Watchers 1 · open issues 0
-- Last 14 days per GitHub: 351 clones from 348 machines, 0 views from 0 visitors
-- Since recording began (2026-09-28): 938 clones, 12 views
+- Last 14 days per GitHub: 344 clones from 338 machines, 0 views from 0 visitors
+- Since recording began (2026-09-28): 1081 clones, 12 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/feature-scout-dunkel.svg">
@@ -37,6 +37,7 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
+| 2026-11-09 | 143 | 0 | 6 |
 | 2026-11-02 | 174 | 0 | 7 |
 | 2026-10-26 | 177 | 0 | 7 |
 | 2026-10-19 | 177 | 0 | 7 |
@@ -47,8 +48,8 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 ### Sertac0708/siteground-deploy
 
 - Stars 0 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 15 clones from 11 machines, 15 views from 1 visitors
-- Since recording began (2026-10-02): 88 clones, 15 views
+- Last 14 days per GitHub: 20 clones from 13 machines, 0 views from 0 visitors
+- Since recording began (2026-10-02): 96 clones, 15 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/siteground-deploy-dunkel.svg">
@@ -57,6 +58,7 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
+| 2026-11-09 | 8 | 0 | 6 |
 | 2026-11-02 | 7 | 0 | 7 |
 | 2026-10-26 | 8 | 15 | 7 |
 | 2026-10-19 | 6 | 0 | 7 |
@@ -67,8 +69,8 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 ### Sertac0708/github-repo-pruefer
 
 - Stars 1 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 403 clones from 379 machines, 0 views from 0 visitors
-- Since recording began (2026-09-27): 1107 clones, 26 views
+- Last 14 days per GitHub: 384 clones from 363 machines, 0 views from 0 visitors
+- Since recording began (2026-09-27): 1258 clones, 26 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/github-repo-pruefer-dunkel.svg">
@@ -77,6 +79,7 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
+| 2026-11-09 | 151 | 0 | 6 |
 | 2026-11-02 | 204 | 0 | 7 |
 | 2026-10-26 | 199 | 0 | 7 |
 | 2026-10-19 | 209 | 1 | 7 |
@@ -88,8 +91,8 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 ### Sertac0708/repo-statistik
 
 - Stars 0 · Forks 0 · Watchers 0 · open issues 0
-- Last 14 days per GitHub: 51 clones from 28 machines, 0 views from 0 visitors
-- Since recording began (2026-10-07): 230 clones, 13 views
+- Last 14 days per GitHub: 59 clones from 33 machines, 0 views from 0 visitors
+- Since recording began (2026-10-07): 261 clones, 13 views
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
@@ -98,6 +101,7 @@ As of 2026-11-09 14:46 UTC. This block is written by the tool; manual edits will
 
 | Week of | Clones | Views | Days with data |
 |---|---:|---:|---:|
+| 2026-11-09 | 31 | 0 | 6 |
 | 2026-11-02 | 25 | 0 | 7 |
 | 2026-10-26 | 26 | 0 | 7 |
 | 2026-10-19 | 19 | 0 | 7 |

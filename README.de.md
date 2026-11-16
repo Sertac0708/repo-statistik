@@ -22,13 +22,13 @@ Dieses Repo ist Anleitung und Ergebnis zugleich. Der Block unten wird jeden Mont
 Werkzeug neu geschrieben, mit den Zahlen unserer öffentlichen Repos.
 
 <!-- statistik:start -->
-Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
+Stand: 2026-11-16 14:21 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderungen von Hand gehen verloren.
 
 ### Sertac0708/feature-scout
 
 - Sterne 2 · Forks 0 · Beobachter 1 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 351 Klone von 348 Rechnern, 0 Aufrufe von 0 Besuchern
-- Seit Aufzeichnungsbeginn (2026-09-28): 938 Klone, 12 Aufrufe
+- Letzte 14 Tage laut GitHub: 344 Klone von 338 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-09-28): 1081 Klone, 12 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/feature-scout-dunkel.svg">
@@ -37,6 +37,7 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-11-09 | 143 | 0 | 6 |
 | 2026-11-02 | 174 | 0 | 7 |
 | 2026-10-26 | 177 | 0 | 7 |
 | 2026-10-19 | 177 | 0 | 7 |
@@ -47,8 +48,8 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 ### Sertac0708/siteground-deploy
 
 - Sterne 0 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 15 Klone von 11 Rechnern, 15 Aufrufe von 1 Besuchern
-- Seit Aufzeichnungsbeginn (2026-10-02): 88 Klone, 15 Aufrufe
+- Letzte 14 Tage laut GitHub: 20 Klone von 13 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-10-02): 96 Klone, 15 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/siteground-deploy-dunkel.svg">
@@ -57,6 +58,7 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-11-09 | 8 | 0 | 6 |
 | 2026-11-02 | 7 | 0 | 7 |
 | 2026-10-26 | 8 | 15 | 7 |
 | 2026-10-19 | 6 | 0 | 7 |
@@ -67,8 +69,8 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 ### Sertac0708/github-repo-pruefer
 
 - Sterne 1 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 403 Klone von 379 Rechnern, 0 Aufrufe von 0 Besuchern
-- Seit Aufzeichnungsbeginn (2026-09-27): 1107 Klone, 26 Aufrufe
+- Letzte 14 Tage laut GitHub: 384 Klone von 363 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-09-27): 1258 Klone, 26 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/github-repo-pruefer-dunkel.svg">
@@ -77,6 +79,7 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-11-09 | 151 | 0 | 6 |
 | 2026-11-02 | 204 | 0 | 7 |
 | 2026-10-26 | 199 | 0 | 7 |
 | 2026-10-19 | 209 | 1 | 7 |
@@ -88,8 +91,8 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 ### Sertac0708/repo-statistik
 
 - Sterne 0 · Forks 0 · Beobachter 0 · offene Issues 0
-- Letzte 14 Tage laut GitHub: 51 Klone von 28 Rechnern, 0 Aufrufe von 0 Besuchern
-- Seit Aufzeichnungsbeginn (2026-10-07): 230 Klone, 13 Aufrufe
+- Letzte 14 Tage laut GitHub: 59 Klone von 33 Rechnern, 0 Aufrufe von 0 Besuchern
+- Seit Aufzeichnungsbeginn (2026-10-07): 261 Klone, 13 Aufrufe
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="grafik/repo-statistik-dunkel.svg">
@@ -98,6 +101,7 @@ Stand: 2026-11-09 14:46 UTC. Dieser Block wird vom Werkzeug geschrieben, Änderu
 
 | Woche ab | Klone | Aufrufe | Tage mit Daten |
 |---|---:|---:|---:|
+| 2026-11-09 | 31 | 0 | 6 |
 | 2026-11-02 | 25 | 0 | 7 |
 | 2026-10-26 | 26 | 0 | 7 |
 | 2026-10-19 | 19 | 0 | 7 |
