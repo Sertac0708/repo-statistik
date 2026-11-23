@@ -9,20 +9,22 @@
 <text x="36" y="76.7" font-size="11" text-anchor="end" fill="#8f8e86">100</text>
 <line x1="44" x2="704" y1="36.0" y2="36.0" stroke="#2a2f36" stroke-width="1"/>
 <text x="36" y="40.0" font-size="11" text-anchor="end" fill="#8f8e86">150</text>
-<path fill="#3987e5" d="M87.0,146 V50.3 Q87.0,46.3 91.0,46.3 H107.0 Q111.0,46.3 111.0,50.3 V146 Z"/>
-<text x="99.0" y="41.3" font-size="11" text-anchor="middle" fill="#c3c2b7">136</text>
-<text x="99.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
-<path fill="#3987e5" d="M197.0,146 V132.4 Q197.0,128.4 201.0,128.4 H217.0 Q221.0,128.4 221.0,132.4 V146 Z"/>
-<text x="209.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">12.10.</text>
-<path fill="#3987e5" d="M307.0,146 V136.1 Q307.0,132.1 311.0,132.1 H327.0 Q331.0,132.1 331.0,136.1 V146 Z"/>
-<text x="319.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">19.10.</text>
-<path fill="#3987e5" d="M417.0,146 V130.9 Q417.0,126.9 421.0,126.9 H437.0 Q441.0,126.9 441.0,130.9 V146 Z"/>
-<text x="429.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">26.10.</text>
-<path fill="#3987e5" d="M527.0,146 V131.7 Q527.0,127.7 531.0,127.7 H547.0 Q551.0,127.7 551.0,131.7 V146 Z"/>
-<text x="539.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">02.11.</text>
-<path fill="#3987e5" d="M637.0,146 V127.3 Q637.0,123.3 641.0,123.3 H657.0 Q661.0,123.3 661.0,127.3 V146 Z"/>
-<text x="649.0" y="118.3" font-size="11" text-anchor="middle" fill="#c3c2b7">31</text>
-<text x="649.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">09.11.</text>
+<path fill="#3987e5" d="M79.1,146 V50.3 Q79.1,46.3 83.1,46.3 H99.1 Q103.1,46.3 103.1,50.3 V146 Z"/>
+<text x="91.1" y="41.3" font-size="11" text-anchor="middle" fill="#c3c2b7">136</text>
+<text x="91.1" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
+<path fill="#3987e5" d="M173.4,146 V132.4 Q173.4,128.4 177.4,128.4 H193.4 Q197.4,128.4 197.4,132.4 V146 Z"/>
+<text x="185.4" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">12.10.</text>
+<path fill="#3987e5" d="M267.7,146 V136.1 Q267.7,132.1 271.7,132.1 H287.7 Q291.7,132.1 291.7,136.1 V146 Z"/>
+<text x="279.7" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">19.10.</text>
+<path fill="#3987e5" d="M362.0,146 V130.9 Q362.0,126.9 366.0,126.9 H382.0 Q386.0,126.9 386.0,130.9 V146 Z"/>
+<text x="374.0" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">26.10.</text>
+<path fill="#3987e5" d="M456.3,146 V131.7 Q456.3,127.7 460.3,127.7 H476.3 Q480.3,127.7 480.3,131.7 V146 Z"/>
+<text x="468.3" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">02.11.</text>
+<path fill="#3987e5" d="M550.6,146 V127.3 Q550.6,123.3 554.6,123.3 H570.6 Q574.6,123.3 574.6,127.3 V146 Z"/>
+<text x="562.6" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">09.11.</text>
+<path fill="#3987e5" d="M644.9,146 V141.2 Q644.9,137.2 648.9,137.2 H664.9 Q668.9,137.2 668.9,141.2 V146 Z"/>
+<text x="656.9" y="132.2" font-size="11" text-anchor="middle" fill="#c3c2b7">12</text>
+<text x="656.9" y="162" font-size="11" text-anchor="middle" fill="#8f8e86">16.11.</text>
 <text x="44" y="194" font-size="13" font-weight="600" fill="#ffffff">Aufrufe je Woche</text>
 <line x1="44" x2="704" y1="324.0" y2="324.0" stroke="#3d434b" stroke-width="1"/>
 <text x="36" y="328.0" font-size="11" text-anchor="end" fill="#8f8e86">0</text>
@@ -30,13 +32,14 @@
 <text x="36" y="273.0" font-size="11" text-anchor="end" fill="#8f8e86">5</text>
 <line x1="44" x2="704" y1="214.0" y2="214.0" stroke="#2a2f36" stroke-width="1"/>
 <text x="36" y="218.0" font-size="11" text-anchor="end" fill="#8f8e86">10</text>
-<path fill="#d95926" d="M87.0,324 V218.0 Q87.0,214.0 91.0,214.0 H107.0 Q111.0,214.0 111.0,218.0 V324 Z"/>
-<text x="99.0" y="209.0" font-size="11" text-anchor="middle" fill="#c3c2b7">10</text>
-<text x="99.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
-<path fill="#d95926" d="M197.0,324 V295.0 Q197.0,291.0 201.0,291.0 H217.0 Q221.0,291.0 221.0,295.0 V324 Z"/>
-<text x="209.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">12.10.</text>
-<text x="319.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">19.10.</text>
-<text x="429.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">26.10.</text>
-<text x="539.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">02.11.</text>
-<text x="649.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">09.11.</text>
+<path fill="#d95926" d="M79.1,324 V218.0 Q79.1,214.0 83.1,214.0 H99.1 Q103.1,214.0 103.1,218.0 V324 Z"/>
+<text x="91.1" y="209.0" font-size="11" text-anchor="middle" fill="#c3c2b7">10</text>
+<text x="91.1" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">05.10.</text>
+<path fill="#d95926" d="M173.4,324 V295.0 Q173.4,291.0 177.4,291.0 H193.4 Q197.4,291.0 197.4,295.0 V324 Z"/>
+<text x="185.4" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">12.10.</text>
+<text x="279.7" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">19.10.</text>
+<text x="374.0" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">26.10.</text>
+<text x="468.3" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">02.11.</text>
+<text x="562.6" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">09.11.</text>
+<text x="656.9" y="340" font-size="11" text-anchor="middle" fill="#8f8e86">16.11.</text>
 </svg>

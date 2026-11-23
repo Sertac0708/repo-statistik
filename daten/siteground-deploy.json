@@ -1,7 +1,7 @@
 {
   "repo": "Sertac0708/siteground-deploy",
   "aufzeichnung_seit": "2026-10-02",
-  "aktualisiert": "2026-11-16 14:21 UTC",
+  "aktualisiert": "2026-11-23 16:55 UTC",
   "tage": {
     "2026-09-23": {
       "aufrufe": 0,
@@ -320,6 +320,54 @@
       "aufrufe_eindeutig": 0,
       "klone": 0,
       "klone_eindeutig": 0
+    },
+    "2026-11-15": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-16": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-17": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-18": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-19": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 1,
+      "klone_eindeutig": 1
+    },
+    "2026-11-20": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
+    },
+    "2026-11-21": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 2,
+      "klone_eindeutig": 2
+    },
+    "2026-11-22": {
+      "aufrufe": 0,
+      "aufrufe_eindeutig": 0,
+      "klone": 0,
+      "klone_eindeutig": 0
     }
   },
   "verlauf": [
@@ -410,6 +458,17 @@
       "aufrufe_eindeutig_14t": 0,
       "klone_14t": 20,
       "klone_eindeutig_14t": 13
+    },
+    {
+      "datum": "2026-11-23",
+      "sterne": 0,
+      "forks": 0,
+      "beobachter": 0,
+      "issues_offen": 0,
+      "aufrufe_14t": 0,
+      "aufrufe_eindeutig_14t": 0,
+      "klone_14t": 11,
+      "klone_eindeutig_14t": 8
     }
   ],
   "verweise": {
@@ -420,7 +479,8 @@
     "2026-10-26": [],
     "2026-11-02": [],
     "2026-11-09": [],
-    "2026-11-16": []
+    "2026-11-16": [],
+    "2026-11-23": []
   },
   "pfade": {
     "2026-10-07": [],
@@ -532,7 +592,8 @@
         "eindeutig": 1
       }
     ],
-    "2026-11-16": []
+    "2026-11-16": [],
+    "2026-11-23": []
   },
   "erstellt": "2026-10-02"
 }
